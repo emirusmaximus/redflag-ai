@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD9DJY3791"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QD9DJY3791');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redflag.ai — İlişkinin Karanlık Yüzüyle Yüzleş</title>
+  <meta name="description"
+    content="Yapay zeka, partnerinin gizli kırmızı bayraklarını ve toksik özelliklerini saniyeler içinde analiz ediyor. Ücretsiz ilişki analizi." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'neon-red': '#FF0033',
+            'neon-red-dark': '#CC0029',
+            'neon-red-glow': '#FF003355',
+            'dark-bg': '#0A0A0F',
+            'dark-card': '#12121A',
+            'dark-card-hover': '#1A1A25',
+            'dark-border': '#1E1E2E',
+            'dark-surface': '#0E0E16',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          animation: {
+            'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+            'fade-in-scale': 'fade-in-scale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'scan-line': 'scan-line 3s linear infinite',
+            'flicker': 'flicker 3s ease-in-out infinite',
+            'spin-slow': 'spin 3s linear infinite',
+            'text-shimmer': 'text-shimmer 2.5s ease-in-out infinite',
+            'slide-up': 'slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          },
+          keyframes: {
+            'glow-pulse': {
+              '0%, 100%': { boxShadow: '0 0 20px #FF003355, 0 0 60px #FF003322' },
+              '50%': { boxShadow: '0 0 40px #FF003388, 0 0 100px #FF003344' },
+            },
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            'fade-in-up': {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'fade-in-scale': {
+              '0%': { opacity: '0', transform: 'scale(0.8)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            'scan-line': {
+              '0%': { top: '-10%' },
+              '100%': { top: '110%' },
+            },
+            'flicker': {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.8' },
+              '25%, 75%': { opacity: '0.95' },
+            },
+            'text-shimmer': {
+              '0%': { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition: '200% center' },
+            },
+            'slide-up': {
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0A0A0F;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #FF003366;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF0033;
+    }
+
+    /* Noise texture overlay */
+    .noise-bg::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Scan line effect */
+    .scan-line::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #FF003333, transparent);
+      animation: scan-line 3s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Neon text glow */
+    .neon-text {
+      text-shadow: 0 0 10px #FF003366, 0 0 40px #FF003322;
+    }
+
+    /* Grid pattern background */
+    .grid-pattern {
+      background-image:
+        linear-gradient(rgba(255, 0, 51, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 51, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Custom radio card styles */
+    .option-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .option-card:hover {
+      transform: translateY(-2px);
+      border-color: #FF003366;
+      background-color: #1A1A25;
+    }
+
+    .option-card.selected {
+      border-color: #FF0033;
+      background: linear-gradient(135deg, #FF003311 0%, #FF003308 100%);
+      box-shadow: 0 0 20px #FF003322, inset 0 0 20px #FF003308;
+    }
+
+    .option-card.selected .card-indicator {
+      background: #FF0033;
+      box-shadow: 0 0 10px #FF003388;
+    }
+
+    /* CTA Button glow */
+    .cta-btn {
+      background: linear-gradient(135deg, #FF0033 0%, #CC0029 100%);
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      box-shadow: 0 0 30px #FF003366, 0 0 80px #FF003333;
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .cta-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Loading spinner */
+    .spinner-ring {
+      border: 3px solid #1E1E2E;
+      border-top: 3px solid #FF0033;
+      border-right: 3px solid #FF003366;
+    }
+
+    /* Dropdown styles */
+    select option {
+      background-color: #12121A;
+      color: #e5e5e5;
+    }
+
+    /* Stagger animation for cards */
+    .stagger-1 {
+      animation-delay: 0.1s;
+    }
+
+    .stagger-2 {
+      animation-delay: 0.2s;
+    }
+
+    .stagger-3 {
+      animation-delay: 0.3s;
+    }
+
+    .stagger-4 {
+      animation-delay: 0.4s;
+    }
+
+    /* Shimmer text effect */
+    .shimmer-text {
+      background: linear-gradient(90deg, #FF0033 0%, #FF6666 25%, #FF0033 50%, #FF6666 75%, #FF0033 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: text-shimmer 2.5s ease-in-out infinite;
+    }
+
+    /* Fade transitions */
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* === PHASE 2 STYLES === */
+
+    /* Result Card — Instagram Story format */
+    .result-card {
+      width: 340px;
+      background: linear-gradient(180deg, #12121A 0%, #0A0A0F 50%, #12121A 100%);
+      border: 1px solid #FF003322;
+      border-radius: 24px;
+      box-shadow: 0 0 60px #FF003318, 0 20px 60px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(180deg, #FF003344 0%, transparent 40%, transparent 60%, #FF003322 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Gauge ring */
+    .gauge-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .gauge-ring svg {
+      transform: rotate(-90deg);
+    }
+
+    .gauge-track {
+      fill: none;
+      stroke: #1E1E2E;
+      stroke-width: 8;
+    }
+
+    .gauge-fill {
+      fill: none;
+      stroke: #FF0033;
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 440;
+      stroke-dashoffset: 440;
+      transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 0 8px #FF003388);
+    }
+
+    /* Paywall package cards */
+    .paywall-card {
+      background: linear-gradient(135deg, #12121A 0%, #0E0E16 100%);
+      border: 1px solid #1E1E2E;
+      border-radius: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .paywall-card:hover {
+      border-color: #FF003344;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .paywall-card.popular {
+      border-color: #FF003366;
+      background: linear-gradient(135deg, #FF003308 0%, #12121A 50%, #FF003305 100%);
+      box-shadow: 0 0 30px #FF003315;
+    }
+
+    .paywall-card.popular:hover {
+      border-color: #FF0033;
+      box-shadow: 0 0 40px #FF003325, 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* === PREMIUM MODAL === */
+    .premium-overlay {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .premium-modal {
+      background: linear-gradient(180deg, #12121A 0%, #0A0A0F 50%, #12121A 100%);
+      border: 1px solid #FF003330;
+      border-radius: 24px;
+      box-shadow: 0 0 80px #FF003320, 0 30px 80px rgba(0, 0, 0, 0.6);
+      max-width: 420px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .premium-modal::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .premium-modal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .premium-modal::-webkit-scrollbar-thumb {
+      background: #FF003330;
+      border-radius: 4px;
+    }
+
+    /* Typewriter cursor */
+    .typewriter-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: #FF0033;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: cursor-blink 0.8s step-end infinite;
+    }
+
+    @keyframes cursor-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Premium loading dots */
+    .premium-dots span {
+      animation: dot-bounce 1.4s ease-in-out infinite;
+    }
+
+    .premium-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .premium-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes dot-bounce {
+
+      0%,
+      80%,
+      100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    /* === MOBILE-FIRST RESPONSIVE === */
+    @media (max-width: 640px) {
+
+      /* Touch-friendly tap targets */
+      .option-card {
+        min-height: 56px;
+        padding: 16px !important;
+      }
+
+      .paywall-card {
+        min-height: 64px;
+        padding: 18px !important;
+      }
+
+      /* Hero adjustments */
+      .scan-line {
+        padding-top: 6rem !important;
+      }
+
+      /* Result card mobile */
+      .result-card {
+        width: 92vw !important;
+        max-width: 380px;
+      }
+
+      .gauge-ring {
+        width: 130px !important;
+        height: 130px !important;
+      }
+
+      /* Premium modal smaller on mobile */
+      .premium-modal {
+        width: 95% !important;
+        padding: 24px !important;
+        border-radius: 20px;
+        max-height: 90vh;
+      }
+
+      /* Navbar compact */
+      nav .max-w-5xl {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    /* === BLURRED PREVIEW === */
+    .blurred-preview {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blurred-text {
+      filter: blur(6px);
+      -webkit-filter: blur(6px);
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+      line-height: 1.8;
+    }
+
+    .blur-lock-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, rgba(10, 10, 15, 0.7) 0%, rgba(10, 10, 15, 0.95) 70%);
+      z-index: 10;
+    }
+
+    /* === SCROLL REVEAL === */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-dark-bg text-gray-200 font-sans noise-bg grid-pattern min-h-screen overflow-x-hidden">
+
+  <!-- Ambient Glow Orbs -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-neon-red/5 rounded-full blur-[150px] animate-float"></div>
+    <div class="absolute top-1/2 -right-40 w-80 h-80 bg-neon-red/3 rounded-full blur-[120px] animate-float"
+      style="animation-delay: -3s;"></div>
+    <div class="absolute -bottom-20 left-1/3 w-72 h-72 bg-neon-red/4 rounded-full blur-[100px] animate-float"
+      style="animation-delay: -1.5s;"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" class="relative z-10">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-dark-bg/70 border-b border-dark-border/50">
+      <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-neon-red/20 border border-neon-red/40 flex items-center justify-center">
+            <svg class="w-4 h-4 text-neon-red" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
+            </svg>
+          </div>
+          <span class="text-lg font-bold tracking-tight">
+            <span class="text-white">Redflag</span><span class="text-neon-red">.ai</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span
+            class="hidden sm:inline text-xs font-mono text-gray-500 bg-dark-card px-3 py-1.5 rounded-full border border-dark-border">
+            v2.0 — beta
+          </span>
+          <div class="w-2 h-2 rounded-full bg-neon-red animate-glow-pulse"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-8 px-6 relative scan-line overflow-hidden">
+      <div class="max-w-3xl mx-auto text-center">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-red/10 border border-neon-red/20 text-neon-red text-xs font-mono mb-8 animate-fade-in-up opacity-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></span>
+          <span>AI ANALİZ SİSTEMİ AKTİF</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1
+          class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight mb-6 animate-fade-in-up opacity-0 stagger-1">
+          İlişkinin<br />
+          <span class="neon-text text-neon-red">Karanlık Yüzüyle</span><br />
+          <span class="text-white">Yüzleş.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-4 animate-fade-in-up opacity-0 stagger-2">
+          Yapay zeka, partnerinin gizli <span class="text-neon-red font-semibold">kırmızı bayraklarını</span> ve toksik
+          özelliklerini saniyeler içinde analiz ediyor.
+        </p>
+
+        <!-- Stats row -->
+        <div
+          class="flex items-center justify-center gap-6 text-xs font-mono text-gray-500 animate-fade-in-up opacity-0 stagger-3">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1 h-1 rounded-full bg-green-500"></span>
+            2.4M+ analiz
+          </span>
+          <span class="text-dark-border">|</span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-1 h-1 rounded-full bg-neon-red"></span>
+            %89 doğruluk
+          </span>
+          <span class="text-dark-border">|</span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-1 h-1 rounded-full bg-yellow-500"></span>
+            Ücretsiz
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form-section" class="py-10 px-6 relative">
+      <div class="max-w-2xl mx-auto">
+        <form id="analysis-form" class="space-y-10">
+
+          <!-- Question 1 -->
+          <div class="animate-fade-in-up opacity-0 stagger-1">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">01</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Tartışma anında ilk tepkisi ne olur?</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-options">
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q1" data-value="sessiz">
+                <input type="radio" name="q1" value="sessiz" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🤐</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sessizliğe
+                      bürünür</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q1" data-value="ses">
+                <input type="radio" name="q1" value="ses" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🗣️</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sesini
+                      yükseltir</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q1" data-value="espri">
+                <input type="radio" name="q1" value="espri" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">😂</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Espriye
+                      vurur</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q1" data-value="mantik">
+                <input type="radio" name="q1" value="mantik" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🧠</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Mantıkla
+                      beynimi yakar</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- Question 2 -->
+          <div class="animate-fade-in-up opacity-0 stagger-2">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">02</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Instagram Keşfet'i neyle dolu?</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q2-options">
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q2" data-value="araba">
+                <input type="radio" name="q2" value="araba" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🏎️</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sadece
+                      arabalar-futbol</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q2" data-value="rastgele">
+                <input type="radio" name="q2" value="rastgele" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">👀</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Rastgele
+                      kızlar-erkekler</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q2" data-value="motivasyon">
+                <input type="radio" name="q2" value="motivasyon" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">📈</span>
+                    <span
+                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Motivasyon-Borsa</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q2" data-value="hayvan">
+                <input type="radio" name="q2" value="hayvan" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🐱</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kedi-Köpek
+                      videoları</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- Question 3 -->
+          <div class="animate-fade-in-up opacity-0 stagger-3">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">03</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Sana en sık nasıl hitap eder?</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q3-options">
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q3" data-value="bebegim">
+                <input type="radio" name="q3" value="bebegim" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">💕</span>
+                    <span
+                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Bebeğim-Hayatım</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q3" data-value="isim">
+                <input type="radio" name="q3" value="isim" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">📛</span>
+                    <span
+                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">İsminle</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q3" data-value="askim">
+                <input type="radio" name="q3" value="askim" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">❤️</span>
+                    <span
+                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Aşkım</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q3" data-value="kanka">
+                <input type="radio" name="q3" value="kanka" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🤙</span>
+                    <span
+                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kanka-Oğlum-Lan</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- Question 4: Zodiac Dropdown -->
+          <div class="animate-fade-in-up opacity-0 stagger-4">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">04</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Partnerinin Burcu?</h3>
+            </div>
+            <div class="relative">
+              <select id="zodiac-select" name="zodiac"
+                class="w-full appearance-none bg-dark-card border border-dark-border rounded-xl px-5 py-4 text-gray-300 text-sm font-medium focus:outline-none focus:border-neon-red/50 focus:ring-1 focus:ring-neon-red/30 transition-all cursor-pointer hover:border-gray-600">
+                <option value="" disabled selected>✨ Bir burç seçin...</option>
+                <option value="koc">♈ Koç (21 Mar - 19 Nis)</option>
+                <option value="boga">♉ Boğa (20 Nis - 20 May)</option>
+                <option value="ikizler">♊ İkizler (21 May - 20 Haz)</option>
+                <option value="yengec">♋ Yengeç (21 Haz - 22 Tem)</option>
+                <option value="aslan">♌ Aslan (23 Tem - 22 Ağu)</option>
+                <option value="basak">♍ Başak (23 Ağu - 22 Eyl)</option>
+                <option value="terazi">♎ Terazi (23 Eyl - 22 Eki)</option>
+                <option value="akrep">♏ Akrep (23 Eki - 21 Kas)</option>
+                <option value="yay">♐ Yay (22 Kas - 21 Ara)</option>
+                <option value="oglak">♑ Oğlak (22 Ara - 19 Oca)</option>
+                <option value="kova">♒ Kova (20 Oca - 18 Şub)</option>
+                <option value="balik">♓ Balık (19 Şub - 20 Mar)</option>
+              </select>
+              <!-- Custom dropdown arrow -->
+              <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- Question 5: Maddiyat -->
+          <div class="animate-fade-in-up opacity-0 stagger-4">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">05</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Hesap ödenirken tavrı nasıldır?</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q5-options">
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q5" data-value="alman">
+                <input type="radio" name="q5" value="alman" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🤝</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Alman usulü
+                      teklif eder</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q5" data-value="cimri">
+                <input type="radio" name="q5" value="cimri" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🫣</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hiç elini
+                      cebine atmaz</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q5" data-value="lafci">
+                <input type="radio" name="q5" value="lafci" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🗯️</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hep o öder
+                      ama lafını yapar</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q5" data-value="sov">
+                <input type="radio" name="q5" value="sov" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">💸</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Şov yaparak
+                      öder</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- Question 6: Kriz Anı -->
+          <div class="animate-fade-in-up opacity-0 stagger-4">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">06</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Dışarıda garson/kasiyerle sorun yaşasa ne
+                yapar?</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q6-options">
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q6" data-value="ezer">
+                <input type="radio" name="q6" value="ezer" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">😤</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Çalışanı
+                      ezer</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q6" data-value="sessiz_sinir">
+                <input type="radio" name="q6" value="sessiz_sinir" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">😑</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sessizce
+                      sinirlenir</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q6" data-value="bagirir">
+                <input type="radio" name="q6" value="bagirir" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">🤬</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Beni rezil
+                      edecek kadar bağırır</span>
+                  </div>
+                </div>
+              </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q6" data-value="kibar">
+                <input type="radio" name="q6" value="kibar" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">😊</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kibarca
+                      çözer</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="h-px bg-gradient-to-r from-transparent via-dark-border to-transparent"></div>
+
+          <!-- WhatsApp Message Textarea -->
+          <div class="animate-fade-in-up opacity-0 stagger-4">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">💬</span>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-200">WhatsApp'taki son 10 mesajını buraya
+                yapıştır.</h3>
+            </div>
+            <textarea id="whatsapp-messages" name="messages" rows="5"
+              class="w-full bg-dark-card border border-dark-border rounded-xl px-5 py-4 text-gray-300 text-sm font-medium placeholder-gray-600 focus:outline-none focus:border-neon-red/50 focus:ring-1 focus:ring-neon-red/30 transition-all resize-none hover:border-gray-600"
+              placeholder="Mesajları buraya yapıştır...&#10;Örn:&#10;— aynen&#10;— tamam görüşürüz&#10;— sen bilirsin..."></textarea>
+            <div class="flex items-start gap-2 mt-3 px-1">
+              <span class="text-neon-red text-xs mt-0.5">🔒</span>
+              <p class="text-[11px] leading-relaxed">
+                <span class="text-neon-red font-semibold">Gizlilik Yemini:</span>
+                <span class="text-gray-500"> Mesajların hiçbir sunucuya kaydedilmez. Sadece tarayıcında anlık taranır ve
+                  silinir.</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-4 animate-fade-in-up opacity-0 stagger-4">
+            <button type="submit" id="submit-btn"
+              class="cta-btn w-full py-5 rounded-2xl text-white font-bold text-lg tracking-wide animate-glow-pulse relative overflow-hidden group">
+              <span class="relative z-10 flex items-center justify-center gap-3">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                Gerçekleri Gör (Ücretsiz Analiz)
+              </span>
+              <!-- Shine effect -->
+              <div
+                class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent">
+              </div>
+            </button>
+
+            <!-- Disclaimer -->
+            <p class="text-center text-[11px] text-gray-600 mt-4 font-mono">
+              🔒 Verileriniz kaydedilmez • Tamamen anonim • Eğlence amaçlıdır
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Loading Screen (Hidden) -->
+  <div id="loading-screen" class="fixed inset-0 z-50 bg-dark-bg flex flex-col items-center justify-center hidden">
+    <!-- Ambient glows -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon-red/8 rounded-full blur-[150px] animate-pulse">
+      </div>
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center gap-8">
+      <!-- Spinner -->
+      <div class="relative">
+        <div class="w-20 h-20 rounded-full spinner-ring animate-spin-slow"></div>
+        <div class="absolute inset-0 w-20 h-20 rounded-full spinner-ring animate-spin-slow"
+          style="animation-direction: reverse; animation-duration: 2s; border-top-color: #FF003366; border-right-color: #FF003322;">
+        </div>
+        <div class="absolute inset-3 w-14 h-14 rounded-full bg-dark-bg flex items-center justify-center">
+          <span class="text-neon-red text-2xl animate-pulse">🚩</span>
+        </div>
+      </div>
+
+      <!-- Loading text -->
+      <div class="text-center space-y-3">
+        <p id="loading-text" class="shimmer-text text-lg font-bold tracking-wide">
+          Claude 3.5 Sonuçları Derliyor...
+        </p>
+        <div class="flex items-center justify-center gap-2">
+          <div class="w-32 h-1 bg-dark-card rounded-full overflow-hidden">
+            <div id="progress-bar"
+              class="h-full bg-gradient-to-r from-neon-red to-red-400 rounded-full transition-all duration-500"
+              style="width: 0%"></div>
+          </div>
+          <span id="progress-percent" class="text-xs font-mono text-gray-500">0%</span>
+        </div>
+      </div>
+
+      <!-- AI Model Tag -->
+      <div
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-dark-card/80 border border-dark-border text-xs font-mono text-gray-500">
+        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+        redflag-ai-v2 • neural engine active
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== RESULT SCREEN (Hidden) ===== -->
+  <div id="result-screen" class="hidden relative z-10 min-h-screen py-10 px-4">
+    <!-- Ambient glows -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div
+        class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-neon-red/8 rounded-full blur-[160px]">
+      </div>
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center gap-10 pt-16">
+
+      <!-- ===== RESULT CARD (Instagram Story Format) ===== -->
+      <div class="result-card opacity-0 animate-fade-in-scale" id="result-card" style="animation-delay: 0.2s;">
+        <div class="p-8 flex flex-col items-center text-center">
+
+          <!-- Card header -->
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></div>
+            <span class="text-[10px] font-mono text-gray-500 uppercase tracking-[3px]">AI Analiz Raporu</span>
+            <div class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></div>
+          </div>
+
+          <h2 class="text-lg font-bold text-white mb-6 tracking-tight">İlişkinin Gerçek Yüzü</h2>
+
+          <!-- Divider -->
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-neon-red/20 to-transparent mb-8"></div>
+
+          <!-- Gauge -->
+          <div class="gauge-ring mx-auto mb-6">
+            <svg viewBox="0 0 160 160" class="w-full h-full">
+              <circle cx="80" cy="80" r="70" class="gauge-track" />
+              <circle cx="80" cy="80" r="70" class="gauge-fill" id="gauge-circle" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span id="gauge-percent" class="text-4xl font-black text-neon-red neon-text"
+                style="font-variant-numeric: tabular-nums;">0</span>
+              <span class="text-[10px] font-bold text-neon-red/70 uppercase tracking-[4px] mt-0.5">RED FLAG</span>
+            </div>
+          </div>
+
+          <!-- Risk level label -->
+          <div id="risk-badge"
+            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-red/10 border border-neon-red/30 mb-6">
+            <span class="text-xs font-bold text-neon-red" id="risk-label">Yüksek Risk</span>
+          </div>
+
+          <!-- Divider -->
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-dark-border to-transparent mb-5"></div>
+
+          <!-- Archetype -->
+          <span class="text-[10px] font-mono text-gray-500 uppercase tracking-[2px] mb-2">Tespit Edilen Arketip</span>
+          <h3 class="text-base font-bold text-white mb-5" id="archetype-name">—</h3>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap justify-center gap-2 mb-6" id="trait-tags"></div>
+
+          <!-- Divider -->
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-dark-border to-transparent mb-4"></div>
+
+          <!-- Zodiac -->
+          <div class="flex items-center gap-2 mb-6">
+            <span class="text-gray-500 text-xs font-mono">Burç Etkisi:</span>
+            <span id="zodiac-result" class="text-xs font-semibold text-gray-300">—</span>
+          </div>
+
+          <!-- Watermark -->
+          <div class="flex items-center gap-1.5 opacity-40">
+            <span class="text-[11px]">🔍</span>
+            <span class="text-[10px] font-mono text-gray-500 tracking-wider">redflag.ai</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== BLURRED PREVIEW (Psychological Hook) ===== -->
+      <div class="w-full max-w-md reveal-on-scroll" style="margin-bottom: 2rem;">
+        <div class="text-center mb-4">
+          <span class="text-[10px] font-mono text-neon-red/70 uppercase tracking-[3px]">Premium Analiz Detayları</span>
+        </div>
+
+        <div class="blurred-preview rounded-2xl bg-dark-card border border-dark-border p-6 sm:p-8">
+          <!-- Fake blurred analysis text -->
+          <div class="blurred-text text-sm text-gray-400">
+            <p>Bu kişinin bilinçaltında derin bir bağlanma korkusu yatıyor. Mesajlardaki kısa ve kopuk cevaplar,
+              partnerinin pasif-agresif eğilimlerini maskeleyen bir savunma mekanizması. WhatsApp verileri özellikle
+              ilginç: "aynen" ve "tamam" gibi kelimeler, duygusal kaçışın en net göstergeleri.</p>
+            <p class="mt-3">Freudyen perspektiften bakıldığında, bu kişi çocukluğundaki baskılanmış otorite figürünü
+              yansıtıyor. Narsistik yaralanma belirtileri açıkça görülüyor ve mevcut ilişki sadece bir...</p>
+          </div>
+
+          <!-- Lock overlay on top of blurred text -->
+          <div class="blur-lock-overlay">
+            <div
+              class="w-14 h-14 rounded-2xl bg-dark-card-hover border border-neon-red/30 flex items-center justify-center mb-4 shadow-lg shadow-neon-red/10">
+              <svg class="w-7 h-7 text-neon-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <p class="text-sm font-semibold text-white text-center mb-2 px-4">Bilinçaltındaki gerçekleri görmek
+              için<br><span class="text-neon-red">paket seçin</span></p>
+            <p class="text-[10px] text-gray-500 font-mono">🔒 AI derin analiz • Kişiye özel</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PAYWALL SECTION ===== -->
+      <div class="w-full max-w-md reveal-on-scroll" style="animation-delay: 0.8s;">
+
+        <!-- Paywall header -->
+        <div class="text-center mb-6">
+          <p class="text-sm text-gray-400 mb-1">Bu sadece <span class="text-neon-red font-semibold">başlangıç</span>.
+          </p>
+          <p class="text-xs text-gray-500 font-mono">Derin analiz raporlarıyla ilişkinin tüm katmanlarını keşfet.</p>
+        </div>
+
+        <div class="flex flex-col gap-4" id="paywall-packages">
+
+          <!-- Package 1 -->
+          <button onclick="openShopierPayment(1)" class="paywall-card p-5 text-left group" id="pkg-btn-1">
+            <div class="flex items-start justify-between">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-dark-card-hover border border-dark-border flex items-center justify-center flex-shrink-0 group-hover:border-neon-red/30 transition-colors">
+                  <svg class="w-5 h-5 text-gray-500 group-hover:text-neon-red transition-colors" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">Eski Sevgili
+                    Radarı</h4>
+                  <p class="text-xs text-gray-500 mt-1">Geçmişi gerçekten sildi mi?</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="text-sm font-bold text-neon-red">14.90 ₺</span>
+              </div>
+            </div>
+          </button>
+
+          <!-- Package 2 (Popular) -->
+          <button onclick="openShopierPayment(2)" class="paywall-card popular p-5 text-left group relative"
+            id="pkg-btn-2">
+            <!-- Popular badge -->
+            <div
+              class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-neon-red text-[10px] font-bold text-white uppercase tracking-wider shadow-lg shadow-neon-red/30">
+              🔥 En Popüler
+            </div>
+            <div class="flex items-start justify-between mt-1">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-neon-red/10 border border-neon-red/30 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-neon-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Freudyen Bilinçaltı Analizi</h4>
+                  <p class="text-xs text-gray-400 mt-1">Gizli manipülasyon taktikleri ve travmaları.</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="text-sm font-bold text-neon-red">49.90 ₺</span>
+              </div>
+            </div>
+          </button>
+
+          <!-- Package 3 -->
+          <button onclick="openShopierPayment(3)" class="paywall-card p-5 text-left group" id="pkg-btn-3">
+            <div class="flex items-start justify-between">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-10 h-10 rounded-xl bg-dark-card-hover border border-dark-border flex items-center justify-center flex-shrink-0 group-hover:border-neon-red/30 transition-colors">
+                  <svg class="w-5 h-5 text-gray-500 group-hover:text-neon-red transition-colors" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">Kıyamet Senaryosu
+                  </h4>
+                  <p class="text-xs text-gray-500 mt-1">Bu ilişki nasıl ve kimin yüzünden bitecek?</p>
+                </div>
+              </div>
+              <div class="text-right flex-shrink-0">
+                <span class="text-sm font-bold text-neon-red">89.90 ₺</span>
+              </div>
+            </div>
+          </button>
+
+        </div>
+
+        <!-- "Ödememi Tamamladım" Confirmation Button (Hidden by default) -->
+        <div id="payment-confirm-section" class="hidden mt-6">
+          <div class="w-full h-px bg-gradient-to-r from-transparent via-neon-red/30 to-transparent mb-4"></div>
+          <p class="text-center text-xs text-gray-400 mb-3">
+            Ödemenizi yaptıktan sonra aşağıdaki butona tıklayın.
+          </p>
+          <button id="confirm-payment-btn" onclick="confirmPaymentAndAnalyze()"
+            class="w-full py-4 rounded-2xl text-white font-bold text-base tracking-wide relative overflow-hidden group cta-btn animate-glow-pulse">
+            <span class="relative z-10 flex items-center justify-center gap-3">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Ödememi Tamamladım, Analizi Göster
+            </span>
+            <div
+              class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent">
+            </div>
+          </button>
+          <p class="text-center text-[10px] text-gray-600 mt-3 font-mono" id="selected-package-info"></p>
+        </div>
+
+        <!-- Bottom disclaimer -->
+        <p class="text-center text-[10px] text-gray-600 mt-6 font-mono">
+          🔒 256-bit şifreli ödeme • Anında erişim • İade garantisi
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 px-6 mt-12 border-t border-dark-border/30">
+      <div
+        class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 font-mono">
+        <span>© 2026 Redflag.ai — Tüm hakları saklıdır.</span>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-neon-red transition-colors">Gizlilik</a>
+          <a href="#" class="hover:text-neon-red transition-colors">Kullanım Şartları</a>
+          <a href="#" class="hover:text-neon-red transition-colors">İletişim</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Original Footer (form page) -->
+  <footer id="form-footer" class="relative z-10 py-8 px-6 border-t border-dark-border/30">
+    <div
+      class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-600 font-mono">
+      <span>© 2026 Redflag.ai — Tüm hakları saklıdır.</span>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-neon-red transition-colors">Gizlilik</a>
+        <a href="#" class="hover:text-neon-red transition-colors">Kullanım Şartları</a>
+        <a href="#" class="hover:text-neon-red transition-colors">İletişim</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ========================================
+    // === V2 SCORING DATA (6 Questions) ===
+    // ========================================
+    const scoringData = {
+      q1: {
+        sessiz: { points: 8, label: 'Pasif Agresif' },
+        ses: { points: 7, label: 'Agresif' },
+        espri: { points: 3, label: 'Kaçak' },
+        mantik: { points: 6, label: 'Manipülatif' },
+      },
+      q2: {
+        araba: { points: 3, label: null },
+        rastgele: { points: 10, label: 'Sadakatsiz' },
+        motivasyon: { points: 7, label: 'Kriptocu/Sigma' },
+        hayvan: { points: 1, label: null },
+      },
+      q3: {
+        bebegim: { points: 3, label: null },
+        isim: { points: 5, label: null },
+        askim: { points: 4, label: null },
+        kanka: { points: 9, label: 'Saygısız' },
+      },
+      q5: {
+        alman: { points: 2, label: null },
+        cimri: { points: 10, label: 'Cimri' },
+        lafci: { points: 7, label: 'Hesapçı' },
+        sov: { points: 5, label: 'Şovmen' },
+      },
+      q6: {
+        ezer: { points: 10, label: 'Zorba' },
+        sessiz_sinir: { points: 6, label: null },
+        bagirir: { points: 10, label: 'Kontrolsüz' },
+        kibar: { points: 1, label: null },
+      },
+    };
+
+    const zodiacNames = {
+      koc: '♈ Koç', boga: '♉ Boğa', ikizler: '♊ İkizler',
+      yengec: '♋ Yengeç', aslan: '♌ Aslan', basak: '♍ Başak',
+      terazi: '♎ Terazi', akrep: '♏ Akrep', yay: '♐ Yay',
+      oglak: '♑ Oğlak', kova: '♒ Kova', balik: '♓ Balık',
+    };
+
+    const zodiacFlavors = {
+      koc: 'Ateş elementi — dürtüsel ve sabırsız',
+      boga: 'Toprak elementi — inatçı ama sadık',
+      ikizler: 'Hava elementi — iki yüzlü olabilir',
+      yengec: 'Su elementi — duygusal manipülasyon riski',
+      aslan: 'Ateş elementi — ego merkezli',
+      basak: 'Toprak elementi — aşırı eleştirel',
+      terazi: 'Hava elementi — kararsız ama diplomatik',
+      akrep: 'Su elementi — intikamcı ve takıntılı',
+      yay: 'Ateş elementi — bağlanma korkusu',
+      oglak: 'Toprak elementi — duygusal mesafe',
+      kova: 'Hava elementi — duygusal kopukluk',
+      balik: 'Su elementi — kurban rolü eğilimi',
+    };
+
+    // Full 12-sign zodiac bonus & archetype prefix system
+    const zodiacBonus = {
+      // 🔥 Ateş Grupları (Ego ve Kaos)
+      koc: { points: 10, prefix: 'Agresif' },
+      aslan: { points: 15, prefix: 'Narsist' },
+      yay: { points: 12, prefix: 'Bağlanma Sorunlu' },
+      // 💧 Su Grupları (Duygu Sömürüsü ve Manipülasyon)
+      akrep: { points: 20, prefix: 'Karanlık/İntikamcı' },
+      yengec: { points: 8, prefix: 'Duygusal Manipülatör' },
+      balik: { points: 5, prefix: 'Sürekli Mağdur' },
+      // 🌍 Toprak Grupları (İnat ve Kontrol)
+      boga: { points: 5, prefix: 'Sabit Fikirli' },
+      basak: { points: 15, prefix: 'Mikro-Yönetici / Eleştirel' },
+      oglak: { points: 10, prefix: 'Buz Dolabı / Hesapçı' },
+      // 💨 Hava Grupları (Dengesizlik ve Ghosting)
+      ikizler: { points: 18, prefix: 'Kaotik / İki Yüzlü' },
+      terazi: { points: 5, prefix: 'Gizli Fboy/Fgirl' },
+      kova: { points: 12, prefix: 'Duygusuz / Kompleksli' },
+    };
+
+    // ========================================
+    // === V2 CALCULATE SCORE ===
+    // ========================================
+    function calculateResults(q1Val, q2Val, q3Val, q5Val, q6Val, zodiacVal, messageText) {
+      const s1 = scoringData.q1[q1Val];
+      const s2 = scoringData.q2[q2Val];
+      const s3 = scoringData.q3[q3Val];
+      const s5 = scoringData.q5[q5Val];
+      const s6 = scoringData.q6[q6Val];
+
+      // --- 1) Base Score: 0-60 range (max per question ~10, 6 questions) ---
+      let baseScore = s1.points + s2.points + s3.points + s5.points + s6.points;
+      // baseScore is now 0 ~ 49 (realistic max)
+
+      // Collect labels for archetype
+      const labels = [s1.label, s2.label, s3.label, s5.label, s6.label].filter(Boolean);
+
+      // --- 2) Zodiac Bonus & Prefix (all 12 signs) ---
+      const zBonus = zodiacBonus[zodiacVal];
+      let zodiacPrefix = null;
+      if (zBonus) {
+        baseScore += zBonus.points;
+        zodiacPrefix = zBonus.prefix;
+      }
+
+      // --- 4) Message Analysis (Regex Hack) ---
+      let messageBonus = 0;
+      const msgLower = (messageText || '').toLowerCase();
+
+      // Check for dismissive keywords
+      const dismissiveWords = ['aynen', 'tm', 'ok', 'bilmiyorum', 'sen bilirsin'];
+      const hasDismissive = dismissiveWords.some(word => {
+        const regex = new RegExp('\\b' + word + '\\b', 'i');
+        return regex.test(msgLower);
+      });
+      if (hasDismissive) {
+        messageBonus += 15;
+        labels.push('Umursamaz');
+      }
+
+      // Check for excessive dots (...) or question marks (?)
+      const dotMatches = (messageText || '').match(/\.{3,}/g);
+      const qMarkMatches = (messageText || '').match(/\?{2,}/g);
+      const excessivePunctuation = (dotMatches && dotMatches.length >= 2) || (qMarkMatches && qMarkMatches.length >= 1);
+      if (excessivePunctuation) {
+        messageBonus += 10;
+      }
+
+      // --- 5) Final Score ---
+      const totalRaw = baseScore + messageBonus;
+      // Normalize to percentage (base max ~61 + msg bonus 25 = ~86 theoretical max)
+      const maxPossible = 60;
+      let percentage = Math.round((totalRaw / maxPossible) * 100);
+      // Cap at 98%
+      percentage = Math.min(percentage, 98);
+
+      // --- 6) Build Archetype ---
+      let archetype;
+      if (labels.length === 0) {
+        archetype = percentage > 50 ? 'Gizli Tehlike' : 'Şüpheli Masum';
+      } else if (labels.length === 1) {
+        archetype = 'Gizli ' + labels[0];
+      } else {
+        archetype = labels.slice(0, 2).join(' ');
+      }
+
+      // Add zodiac prefix if applicable
+      if (zodiacPrefix) {
+        archetype = zodiacPrefix + ' / ' + archetype;
+      }
+
+      // Risk level
+      let riskLevel;
+      if (percentage >= 75) riskLevel = '🚨 Kritik Risk';
+      else if (percentage >= 50) riskLevel = '⚠️ Yüksek Risk';
+      else if (percentage >= 30) riskLevel = '🔶 Orta Risk';
+      else riskLevel = '🟢 Düşük Risk';
+
+      return {
+        percentage,
+        archetype,
+        labels,
+        riskLevel,
+        zodiacName: zodiacNames[zodiacVal],
+        zodiacFlavor: zodiacFlavors[zodiacVal],
+      };
+    }
+
+    // ========================================
+    // === RENDER RESULTS ===
+    // ========================================
+    function showResults(results) {
+      const loadingScreen = document.getElementById('loading-screen');
+      const resultScreen = document.getElementById('result-screen');
+
+      // Fade out loading
+      loadingScreen.style.transition = 'opacity 0.5s ease';
+      loadingScreen.style.opacity = '0';
+
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        loadingScreen.style.opacity = '';
+
+        // Populate result data
+        document.getElementById('risk-label').textContent = results.riskLevel;
+        document.getElementById('archetype-name').textContent = results.archetype;
+        document.getElementById('zodiac-result').textContent =
+          results.zodiacName + ' — ' + results.zodiacFlavor;
+
+        // Trait tags
+        const tagsContainer = document.getElementById('trait-tags');
+        tagsContainer.innerHTML = '';
+        if (results.labels.length > 0) {
+          results.labels.forEach(label => {
+            const tag = document.createElement('span');
+            tag.className = 'px-3 py-1 rounded-full bg-neon-red/10 border border-neon-red/25 text-neon-red text-[11px] font-semibold';
+            tag.textContent = '🚩 ' + label;
+            tagsContainer.appendChild(tag);
+          });
+        } else {
+          const tag = document.createElement('span');
+          tag.className = 'px-3 py-1 rounded-full bg-green-500/10 border border-green-500/25 text-green-400 text-[11px] font-semibold';
+          tag.textContent = '✅ Belirgin toksik özellik tespit edilemedi';
+          tagsContainer.appendChild(tag);
+        }
+
+        // Show result screen
+        resultScreen.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        // Animate gauge after a beat
+        setTimeout(() => {
+          animateGauge(results.percentage);
+        }, 600);
+
+      }, 500);
+    }
+
+    // ========================================
+    // === GAUGE ANIMATION ===
+    // ========================================
+    function animateGauge(targetPercent) {
+      const circle = document.getElementById('gauge-circle');
+      const percentEl = document.getElementById('gauge-percent');
+      const circumference = 2 * Math.PI * 70; // r=70
+
+      // Animate the SVG stroke
+      const offset = circumference - (targetPercent / 100) * circumference;
+      circle.style.strokeDasharray = circumference;
+      circle.style.strokeDashoffset = offset;
+
+      // Animate the counter number
+      let current = 0;
+      const duration = 2000;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        current = Math.round(eased * targetPercent);
+        percentEl.textContent = '%' + current;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ========================================
+    // === Option Card Selection Logic ===
+    // ========================================
+    document.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const question = card.dataset.question;
+        document.querySelectorAll(`.option-card[data-question="${question}"]`).forEach(c => {
+          c.classList.remove('selected');
+        });
+        card.classList.add('selected');
+      });
+    });
+
+    // ========================================
+    // === Loading Messages ===
+    // ========================================
+    const loadingMessages = [
+      'Claude 3.5 Sonuçları Derliyor...',
+      'Bilinçaltı Taranıyor...',
+      'Toksik Patern Analizi Yapılıyor...',
+      'Kırmızı Bayraklar Tespit Ediliyor...',
+      'İlişki Matrisi Oluşturuluyor...',
+      'Sonuçlar Hazırlanıyor...',
+    ];
+
+    // ========================================
+    // === Form Submit ===
+    // ========================================
+    let formAnswers = {};
+
+    document.getElementById('analysis-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const q5 = document.querySelector('input[name="q5"]:checked');
+      const q6 = document.querySelector('input[name="q6"]:checked');
+      const zodiac = document.getElementById('zodiac-select').value;
+      const messageText = document.getElementById('whatsapp-messages').value.trim();
+
+      if (!q1 || !q2 || !q3 || !q5 || !q6 || !zodiac) {
+        if (!q1) shakeElement('q1-options');
+        if (!q2) shakeElement('q2-options');
+        if (!q3) shakeElement('q3-options');
+        if (!q5) shakeElement('q5-options');
+        if (!q6) shakeElement('q6-options');
+        if (!zodiac) shakeElement('zodiac-select');
+        return;
+      }
+
+      // Save answers
+      formAnswers = {
+        q1: q1.value, q2: q2.value, q3: q3.value,
+        q5: q5.value, q6: q6.value,
+        zodiac, messageText
+      };
+
+      // Fade out main content
+      const mainContent = document.getElementById('main-content');
+      const formFooter = document.getElementById('form-footer');
+      mainContent.classList.add('fade-out');
+
+      setTimeout(() => {
+        mainContent.style.display = 'none';
+        formFooter.style.display = 'none';
+
+        // Show loading screen
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.remove('hidden');
+        loadingScreen.classList.add('fade-in');
+
+        let msgIndex = 0;
+        const loadingText = document.getElementById('loading-text');
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercent = document.getElementById('progress-percent');
+
+        const totalDuration = 3000;
+        const intervalTime = totalDuration / loadingMessages.length;
+
+        const textInterval = setInterval(() => {
+          msgIndex++;
+          if (msgIndex < loadingMessages.length) {
+            loadingText.style.opacity = '0';
+            setTimeout(() => {
+              loadingText.textContent = loadingMessages[msgIndex];
+              loadingText.style.opacity = '1';
+            }, 200);
+          }
+        }, intervalTime);
+
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += 2;
+          if (progress > 100) progress = 100;
+          progressBar.style.width = progress + '%';
+          progressPercent.textContent = progress + '%';
+          if (progress >= 100) clearInterval(progressInterval);
+        }, totalDuration / 50);
+
+        // After loading, calculate and show results
+        setTimeout(() => {
+          clearInterval(textInterval);
+          clearInterval(progressInterval);
+          progressBar.style.width = '100%';
+          progressPercent.textContent = '100%';
+
+          const results = calculateResults(
+            formAnswers.q1,
+            formAnswers.q2,
+            formAnswers.q3,
+            formAnswers.q5,
+            formAnswers.q6,
+            formAnswers.zodiac,
+            formAnswers.messageText
+          );
+
+          setTimeout(() => {
+            showResults(results);
+          }, 500);
+        }, totalDuration);
+
+      }, 500);
+    });
+
+    // ========================================
+    // === Shake animation for validation ===
+    // ========================================
+    function shakeElement(id) {
+      const el = document.getElementById(id);
+      el.style.transition = 'transform 0.1s';
+      el.style.transform = 'translateX(-8px)';
+      setTimeout(() => { el.style.transform = 'translateX(8px)'; }, 100);
+      setTimeout(() => { el.style.transform = 'translateX(-4px)'; }, 200);
+      setTimeout(() => { el.style.transform = 'translateX(4px)'; }, 300);
+      setTimeout(() => { el.style.transform = 'translateX(0)'; }, 400);
+    }
+
+    // ========================================
+    // === Intersection Observer (scroll reveal) ===
+    // ========================================
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Scroll reveal for blurred preview + paywall
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ========================================
+    // === PREMIUM: Package names for UI ===
+    // ========================================
+    const packageNames = {
+      1: 'Eski Sevgili Radarı',
+      2: 'Freudyen Bilinçaltı Analizi',
+      3: 'Kıyamet Senaryosu',
+    };
+
+    // Shopier payment links
+    const shopierLinks = {
+      1: 'https://www.shopier.com/RedFlagAI/44667736',
+      2: 'https://www.shopier.com/RedFlagAI/44667325',
+      3: 'https://www.shopier.com/RedFlagAI/44667782',
+    };
+
+    const packagePrices = { 1: '14.90 ₺', 2: '49.90 ₺', 3: '89.90 ₺' };
+
+    // ========================================
+    // === PREMIUM: Loading messages ===
+    // ========================================
+    const premiumLoadingMessages = [
+      'Bilinçaltı Taranıyor...',
+      'Freudyen Katmanlar Açılıyor...',
+      'Travma Haritaları Çıkarılıyor...',
+      'Derin Analiz Yapılıyor...',
+      'Psikolojik Profil Oluşturuluyor...',
+      'Sonuçlar Derleniyor...',
+    ];
+
+    // ========================================
+    // === SHOPIER: Open Payment in New Tab ===
+    // ========================================
+    let selectedPackageId = null;
+
+    function openShopierPayment(packageId) {
+      selectedPackageId = packageId;
+
+      // GA Event: package_click (user clicked to pay)
+      if (typeof gtag === 'function') {
+        gtag('event', 'package_click', {
+          event_category: 'payment',
+          event_label: packageNames[packageId],
+          value: packageId,
+        });
+      }
+
+      // Open Shopier in new tab
+      window.open(shopierLinks[packageId], '_blank');
+
+      // Highlight selected package
+      document.querySelectorAll('.paywall-card').forEach(c => c.style.opacity = '0.5');
+      const selectedBtn = document.getElementById('pkg-btn-' + packageId);
+      if (selectedBtn) {
+        selectedBtn.style.opacity = '1';
+        selectedBtn.style.boxShadow = '0 0 25px #FF003340';
+      }
+
+      // Show confirmation button
+      const confirmSection = document.getElementById('payment-confirm-section');
+      const packageInfo = document.getElementById('selected-package-info');
+      confirmSection.classList.remove('hidden');
+      packageInfo.textContent = '✅ Seçili Paket: ' + packageNames[packageId] + ' — ' + packagePrices[packageId];
+
+      // Scroll to confirmation button
+      setTimeout(() => {
+        confirmSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+
+    // ========================================
+    // === SHOPIER: Confirm Payment & Start API ===
+    // ========================================
+    let premiumRequestInProgress = false;
+
+    function confirmPaymentAndAnalyze() {
+      if (!selectedPackageId || premiumRequestInProgress) return;
+
+      // GA Event: payment_confirmed
+      if (typeof gtag === 'function') {
+        gtag('event', 'payment_confirmed', {
+          event_category: 'payment',
+          event_label: packageNames[selectedPackageId],
+          value: selectedPackageId,
+        });
+      }
+
+      requestPremiumAnalysis(selectedPackageId);
+    }
+
+    // ========================================
+    // === PREMIUM: Request Claude Analysis ===
+    // ========================================
+
+    async function requestPremiumAnalysis(packageId) {
+      if (premiumRequestInProgress) return;
+      premiumRequestInProgress = true;
+
+      console.log('🔮 Premium analiz başlatılıyor: Paket ' + packageId);
+
+      // Prepare data from stored answers
+      const data = {
+        q1: formAnswers.q1,
+        q2: formAnswers.q2,
+        q3: formAnswers.q3,
+        q5: formAnswers.q5,
+        q6: formAnswers.q6,
+        zodiac: formAnswers.zodiac,
+        messages: formAnswers.messageText || '',
+        archetype: document.getElementById('archetype-name').textContent,
+        score: document.getElementById('gauge-percent').textContent.replace('%', ''),
+      };
+
+      // Show premium loading
+      const premiumLoading = document.getElementById('premium-loading');
+      const premiumLoadingText = document.getElementById('premium-loading-text');
+      premiumLoading.classList.remove('hidden');
+
+      // Cycle loading messages
+      let msgIdx = 0;
+      const loadingMsgInterval = setInterval(() => {
+        msgIdx = (msgIdx + 1) % premiumLoadingMessages.length;
+        premiumLoadingText.style.opacity = '0';
+        setTimeout(() => {
+          premiumLoadingText.textContent = premiumLoadingMessages[msgIdx];
+          premiumLoadingText.style.opacity = '1';
+        }, 200);
+      }, 1500);
+
+      try {
+        const response = await fetch('/api/claude', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ packageId, data }),
+        });
+
+        const result = await response.json();
+        clearInterval(loadingMsgInterval);
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || 'API hatası');
+        }
+
+        // Hide loading, show modal
+        premiumLoading.classList.add('hidden');
+        showPremiumModal(packageId, result.analysis);
+
+      } catch (error) {
+        clearInterval(loadingMsgInterval);
+        premiumLoading.classList.add('hidden');
+        console.error('❌ Premium analiz hatası:', error);
+        alert('AI analiz sırasında bir hata oluştu. Lütfen tekrar deneyin.\n\nHata: ' + error.message);
+      } finally {
+        premiumRequestInProgress = false;
+      }
+    }
+
+    // ========================================
+    // === PREMIUM: Show Modal + Typewriter ===
+    // ========================================
+    function showPremiumModal(packageId, analysisText) {
+      const modal = document.getElementById('premium-modal');
+      const title = document.getElementById('premium-modal-title');
+      const packageLabel = document.getElementById('premium-package-label');
+      const typewriterEl = document.getElementById('typewriter-text');
+
+      title.textContent = packageNames[packageId] || 'AI Analiz Raporu';
+      packageLabel.textContent = packageNames[packageId] || 'analiz';
+      typewriterEl.textContent = '';
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      // Start typewriter effect
+      typewriterEffect(typewriterEl, analysisText, 30);
+    }
+
+    // ========================================
+    // === PREMIUM: Typewriter Effect ===
+    // ========================================
+    function typewriterEffect(element, text, speed) {
+      let i = 0;
+      element.textContent = '';
+
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          // Scroll modal content to bottom as text grows
+          element.closest('.premium-modal').scrollTop = element.closest('.premium-modal').scrollHeight;
+          setTimeout(type, speed);
+        } else {
+          // Remove cursor after typing completes
+          const cursor = element.parentElement.querySelector('.typewriter-cursor');
+          if (cursor) {
+            cursor.style.animation = 'none';
+            setTimeout(() => { cursor.style.opacity = '0'; }, 1000);
+          }
+        }
+      }
+      type();
+    }
+
+    // ========================================
+    // === PREMIUM: Close Modal ===
+    // ========================================
+    function closePremiumModal() {
+      const modal = document.getElementById('premium-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  </script>
+
+  <!-- ===== PREMIUM LOADING OVERLAY (Hidden) ===== -->
+  <div id="premium-loading" class="fixed inset-0 z-[60] premium-overlay flex items-center justify-center hidden">
+    <div class="flex flex-col items-center gap-6">
+      <!-- Brain scan animation -->
+      <div class="relative">
+        <div class="w-20 h-20 rounded-full border-2 border-neon-red/30 animate-ping absolute inset-0"></div>
+        <div class="w-20 h-20 rounded-full border-2 border-neon-red/60 flex items-center justify-center relative">
+          <span class="text-3xl animate-pulse">🧠</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <p id="premium-loading-text" class="shimmer-text text-lg font-bold tracking-wide">Bilinçaltı Taranıyor...</p>
+        <div class="premium-dots flex justify-center gap-1 mt-3">
+          <span class="w-2 h-2 rounded-full bg-neon-red"></span>
+          <span class="w-2 h-2 rounded-full bg-neon-red"></span>
+          <span class="w-2 h-2 rounded-full bg-neon-red"></span>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-dark-card/80 border border-dark-border text-xs font-mono text-gray-500">
+        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+        claude-3.5-haiku • deep analysis
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PREMIUM AI REPORT MODAL (Hidden) ===== -->
+  <div id="premium-modal" class="fixed inset-0 z-[70] premium-overlay flex items-center justify-center hidden"
+    onclick="if(event.target===this) closePremiumModal()">
+    <div class="premium-modal p-8 relative animate-fade-in-scale">
+
+      <!-- Close button -->
+      <button onclick="closePremiumModal()"
+        class="absolute top-4 right-4 w-8 h-8 rounded-full bg-dark-card-hover border border-dark-border flex items-center justify-center text-gray-500 hover:text-white hover:border-neon-red/50 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Modal header -->
+      <div class="flex items-center gap-2 mb-2">
+        <div class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></div>
+        <span class="text-[10px] font-mono text-gray-500 uppercase tracking-[3px]">Premium AI Raporu</span>
+        <div class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></div>
+      </div>
+
+      <h2 id="premium-modal-title" class="text-lg font-bold text-white mb-2 tracking-tight">Yapay Zeka Analiz Raporu
+      </h2>
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-neon-red/20 to-transparent mb-6"></div>
+
+      <!-- AI model badge -->
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-dark-card border border-dark-border text-[10px] font-mono text-gray-500 mb-6">
+        <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+        claude-3.5-haiku • <span id="premium-package-label" class="text-neon-red">analiz</span>
+      </div>
+
+      <!-- AI response text (typewriter here) -->
+      <div id="premium-response" class="text-sm text-gray-300 leading-relaxed min-h-[80px]">
+        <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+      </div>
+
+      <!-- Divider -->
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-dark-border to-transparent my-6"></div>
+
+      <!-- Watermark -->
+      <div class="flex items-center justify-center gap-1.5 opacity-40">
+        <span class="text-[11px]">🔍</span>
+        <span class="text-[10px] font-mono text-gray-500 tracking-wider">redflag.ai — premium analiz</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
