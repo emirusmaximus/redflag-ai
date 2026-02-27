@@ -187,6 +187,87 @@
       transform: translateY(0) scale(0.98);
     }
 
+    /* === VIRAL UNLOCK BUTTON === */
+    .unlock-btn {
+      background: linear-gradient(135deg, #FF0033 0%, #FF2255 50%, #CC0029 100%);
+      background-size: 200% 200%;
+      animation: unlock-gradient 3s ease infinite, unlock-glow 2s ease-in-out infinite;
+      border: none;
+      box-shadow: 0 0 0 0 #FF003355;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .unlock-btn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #FF0033, #FF6666, #FF0033);
+      z-index: -1;
+      filter: blur(12px);
+      opacity: 0.6;
+      animation: unlock-glow 2s ease-in-out infinite;
+    }
+
+    .unlock-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+      animation: shine-sweep 2.5s ease-in-out infinite;
+    }
+
+    .unlock-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 40px #FF003355, 0 0 80px #FF003330;
+    }
+
+    .unlock-btn:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    @keyframes unlock-gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes unlock-glow {
+
+      0%,
+      100% {
+        opacity: 0.5;
+      }
+
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes shine-sweep {
+      0% {
+        left: -100%;
+      }
+
+      60%,
+      100% {
+        left: 160%;
+      }
+    }
+
     /* Loading spinner */
     .spinner-ring {
       border: 3px solid #1E1E2E;
@@ -305,20 +386,20 @@
     }
 
     .paywall-card:hover {
-      border-color: #FF003344;
+      border-color: #FF003355;
       transform: translateY(-3px);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 40px rgba(255, 0, 51, 0.15), 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     .paywall-card.popular {
-      border-color: #FF003366;
-      background: linear-gradient(135deg, #FF003308 0%, #12121A 50%, #FF003305 100%);
-      box-shadow: 0 0 30px #FF003315;
+      border-color: #FF003377;
+      background: linear-gradient(135deg, #FF00330D 0%, #12121A 50%, #FF003308 100%);
+      box-shadow: 0 0 35px #FF003320, inset 0 0 30px #FF003308;
     }
 
     .paywall-card.popular:hover {
       border-color: #FF0033;
-      box-shadow: 0 0 40px #FF003325, 0 10px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 50px #FF003330, 0 10px 40px rgba(0, 0, 0, 0.3);
     }
 
     /* === PREMIUM MODAL === */
@@ -406,15 +487,24 @@
     /* === MOBILE-FIRST RESPONSIVE === */
     @media (max-width: 640px) {
 
+      /* Bigger base font for mobile readability */
+      body {
+        font-size: 17px;
+      }
+
       /* Touch-friendly tap targets */
       .option-card {
-        min-height: 56px;
-        padding: 16px !important;
+        min-height: 60px;
+        padding: 16px 14px !important;
+      }
+
+      .option-card span.text-sm {
+        font-size: 15px !important;
       }
 
       .paywall-card {
-        min-height: 64px;
-        padding: 18px !important;
+        min-height: 68px;
+        padding: 18px 16px !important;
       }
 
       /* Hero adjustments */
@@ -425,18 +515,18 @@
       /* Result card mobile */
       .result-card {
         width: 92vw !important;
-        max-width: 380px;
+        max-width: 390px;
       }
 
       .gauge-ring {
-        width: 130px !important;
-        height: 130px !important;
+        width: 140px !important;
+        height: 140px !important;
       }
 
       /* Premium modal smaller on mobile */
       .premium-modal {
-        width: 95% !important;
-        padding: 24px !important;
+        width: 96% !important;
+        padding: 24px 20px !important;
         border-radius: 20px;
         max-height: 90vh;
       }
@@ -446,21 +536,31 @@
         padding-left: 16px;
         padding-right: 16px;
       }
+
+      /* Unlock button full-width on mobile */
+      .unlock-btn {
+        font-size: 17px !important;
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        border-radius: 18px !important;
+      }
     }
 
     /* === BLURRED PREVIEW === */
     .blurred-preview {
       position: relative;
       overflow: hidden;
+      border-radius: 20px;
     }
 
     .blurred-text {
-      filter: blur(6px);
-      -webkit-filter: blur(6px);
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
       user-select: none;
       -webkit-user-select: none;
       pointer-events: none;
-      line-height: 1.8;
+      line-height: 1.9;
+      font-size: 15px;
     }
 
     .blur-lock-overlay {
@@ -470,8 +570,56 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(ellipse at center, rgba(10, 10, 15, 0.7) 0%, rgba(10, 10, 15, 0.95) 70%);
+      background: radial-gradient(ellipse at 50% 60%, rgba(10, 10, 15, 0.55) 0%, rgba(10, 10, 15, 0.97) 68%);
       z-index: 10;
+      padding: 24px;
+    }
+
+    /* Pulsing ring around lock icon */
+    .lock-icon-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .lock-icon-wrap::before,
+    .lock-icon-wrap::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid #FF003340;
+      animation: lock-ring-pulse 2s ease-out infinite;
+    }
+
+    .lock-icon-wrap::before {
+      width: 72px;
+      height: 72px;
+      animation-delay: 0s;
+    }
+
+    .lock-icon-wrap::after {
+      width: 96px;
+      height: 96px;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes lock-ring-pulse {
+      0% {
+        transform: scale(0.85);
+        opacity: 0.6;
+      }
+
+      70% {
+        transform: scale(1.1);
+        opacity: 0.15;
+      }
+
+      100% {
+        transform: scale(0.85);
+        opacity: 0;
+      }
     }
 
     /* === SCROLL REVEAL === */
@@ -531,41 +679,42 @@
       <div class="max-w-3xl mx-auto text-center">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon-red/10 border border-neon-red/20 text-neon-red text-xs font-mono mb-8 animate-fade-in-up opacity-0">
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-red/10 border border-neon-red/20 text-neon-red text-xs font-mono mb-8 animate-fade-in-up opacity-0">
           <span class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></span>
-          <span>AI ANALİZ SİSTEMİ AKTİF</span>
+          <span class="tracking-widest">AI ANALİZ SİSTEMİ AKTİF</span>
         </div>
 
         <!-- Main Heading -->
         <h1
-          class="text-4xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight mb-6 animate-fade-in-up opacity-0 stagger-1">
+          class="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.08] tracking-tighter mb-6 animate-fade-in-up opacity-0 stagger-1">
           İlişkinin<br />
-          <span class="neon-text text-neon-red">Karanlık Yüzüyle</span><br />
+          <span class="neon-text text-neon-red" style="text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;">Karanlık
+            Yüzüyle</span><br />
           <span class="text-white">Yüzleş.</span>
         </h1>
 
         <!-- Subtitle -->
         <p
-          class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed mb-4 animate-fade-in-up opacity-0 stagger-2">
-          Yapay zeka, partnerinin gizli <span class="text-neon-red font-semibold">kırmızı bayraklarını</span> ve toksik
+          class="text-gray-300 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed mb-5 animate-fade-in-up opacity-0 stagger-2">
+          Yapay zeka, partnerinin gizli <span class="text-neon-red font-bold">kırmızı bayraklarını</span> ve toksik
           özelliklerini saniyeler içinde analiz ediyor.
         </p>
 
         <!-- Stats row -->
         <div
-          class="flex items-center justify-center gap-6 text-xs font-mono text-gray-500 animate-fade-in-up opacity-0 stagger-3">
+          class="flex items-center justify-center gap-5 text-xs font-mono text-gray-500 animate-fade-in-up opacity-0 stagger-3">
           <span class="flex items-center gap-1.5">
-            <span class="w-1 h-1 rounded-full bg-green-500"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
             2.4M+ analiz
           </span>
           <span class="text-dark-border">|</span>
           <span class="flex items-center gap-1.5">
-            <span class="w-1 h-1 rounded-full bg-neon-red"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-neon-red"></span>
             %89 doğruluk
           </span>
           <span class="text-dark-border">|</span>
           <span class="flex items-center gap-1.5">
-            <span class="w-1 h-1 rounded-full bg-yellow-500"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
             Ücretsiz
           </span>
         </div>
@@ -1176,149 +1325,145 @@
 
       <!-- ===== BLURRED PREVIEW (Psychological Hook) ===== -->
       <div class="w-full max-w-md reveal-on-scroll" style="margin-bottom: 2rem;">
-        <div class="text-center mb-4">
-          <span class="text-[10px] font-mono text-neon-red/70 uppercase tracking-[3px]">Premium Analiz Detayları</span>
+        <div class="text-center mb-3">
+          <span class="text-[11px] font-mono text-neon-red/80 uppercase tracking-[3px]">🔬 Premium Analiz
+            Detayları</span>
         </div>
 
-        <div class="blurred-preview rounded-2xl bg-dark-card border border-dark-border p-6 sm:p-8">
-          <!-- Fake blurred analysis text -->
-          <div class="blurred-text text-sm text-gray-400">
+        <div class="blurred-preview bg-dark-card border border-neon-red/15 p-7 sm:p-9" style="min-height: 200px;">
+          <!-- Fake blurred analysis text (psychological hook) -->
+          <div class="blurred-text text-gray-400 space-y-3">
             <p>Bu kişinin bilinçaltında derin bir bağlanma korkusu yatıyor. Mesajlardaki kısa ve kopuk cevaplar,
               partnerinin pasif-agresif eğilimlerini maskeleyen bir savunma mekanizması. WhatsApp verileri özellikle
               ilginç: "aynen" ve "tamam" gibi kelimeler, duygusal kaçışın en net göstergeleri.</p>
-            <p class="mt-3">Freudyen perspektiften bakıldığında, bu kişi çocukluğundaki baskılanmış otorite figürünü
-              yansıtıyor. Narsistik yaralanma belirtileri açıkça görülüyor ve mevcut ilişki sadece bir...</p>
+            <p>Freudyen perspektiften bakıldığında, bu kişi çocukluğundaki baskılanmış otorite figürünü
+              yansıtıyor. Narsistik yaralanma belirtileri açıkça görülüyor ve mevcut ilişki sadece bir
+              geçici tatmin mekanizması...</p>
+            <p>Aşağıdaki gizli kırmızı bayraklar tespit edildi: <strong>sessiz ceza, duygusal çekilme,
+                bağımlılık döngüsü.</strong> Senin için özelleştirilmiş çözüm yolu ise...</p>
           </div>
 
-          <!-- Lock overlay on top of blurred text -->
+          <!-- Premium Lock Overlay -->
           <div class="blur-lock-overlay">
-            <div
-              class="w-14 h-14 rounded-2xl bg-dark-card-hover border border-neon-red/30 flex items-center justify-center mb-4 shadow-lg shadow-neon-red/10">
-              <svg class="w-7 h-7 text-neon-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+            <!-- Pulsing lock icon -->
+            <div class="lock-icon-wrap">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center relative z-10"
+                style="background: linear-gradient(135deg, #FF003322 0%, #1A0008 100%); border: 1px solid #FF003355; box-shadow: 0 0 30px #FF003330;">
+                <svg class="w-7 h-7 text-neon-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
             </div>
-            <p class="text-sm font-semibold text-white text-center mb-2 px-4">Bilinçaltındaki gerçekleri görmek
-              için<br><span class="text-neon-red">paket seçin</span></p>
-            <p class="text-[10px] text-gray-500 font-mono">🔒 AI derin analiz • Kişiye özel</p>
+
+            <!-- Hook headline -->
+            <p class="text-base font-black text-white text-center mb-1 px-2" style="line-height: 1.35;">
+              Toksik Analizinin Tamamını<br>
+              <span class="text-neon-red" style="text-shadow: 0 0 16px #FF003355;">Okumak İçin Kilidi Aç</span>
+            </p>
+            <p class="text-[11px] text-gray-500 font-mono text-center mb-5">🧠 Kişiye özel derin psikolojik rapor</p>
+
+            <!-- Scroll-to-paywall button -->
+            <button
+              onclick="document.getElementById('paywall-packages').scrollIntoView({behavior:'smooth', block:'start'})"
+              class="unlock-btn text-white font-bold text-sm tracking-wide px-7 py-3 rounded-2xl">
+              🔓 Kilidi Aç — Analizi Gör
+            </button>
           </div>
         </div>
       </div>
 
       <!-- ===== PAYWALL SECTION ===== -->
-      <div class="w-full max-w-md reveal-on-scroll" style="animation-delay: 0.8s;">
+      <div class="w-full max-w-md reveal-on-scroll" id="paywall-packages-wrapper" style="animation-delay: 0.8s;">
 
         <!-- Paywall header -->
         <div class="text-center mb-6">
-          <p class="text-sm text-gray-400 mb-1">Bu sadece <span class="text-neon-red font-semibold">başlangıç</span>.
-          </p>
-          <p class="text-xs text-gray-500 font-mono">Derin analiz raporlarıyla ilişkinin tüm katmanlarını keşfet.</p>
+          <p class="text-base font-bold text-white mb-1">Bu sadece <span class="text-neon-red">başlangıç</span>.</p>
+          <p class="text-sm text-gray-400">Derin analiz raporlarıyla ilişkinin tüm katmanlarını keşfet.</p>
         </div>
 
         <div class="flex flex-col gap-4" id="paywall-packages">
 
           <!-- Package 1 -->
           <button onclick="openShopierPayment(1)" class="paywall-card p-5 text-left group" id="pkg-btn-1">
-            <div class="flex items-start justify-between">
-              <div class="flex items-start gap-4">
-                <div
-                  class="w-10 h-10 rounded-xl bg-dark-card-hover border border-dark-border flex items-center justify-center flex-shrink-0 group-hover:border-neon-red/30 transition-colors">
-                  <svg class="w-5 h-5 text-gray-500 group-hover:text-neon-red transition-colors" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">Eski Sevgili
-                    Radarı</h4>
-                  <p class="text-xs text-gray-500 mt-1">Geçmişi gerçekten sildi mi?</p>
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-start gap-3 min-w-0">
+                <span class="text-2xl flex-shrink-0 mt-0.5">🔍</span>
+                <div class="min-w-0">
+                  <h4 class="text-base font-bold text-gray-200 group-hover:text-white transition-colors leading-tight">
+                    Eski Sevgili Radarı</h4>
+                  <p class="text-sm text-gray-500 mt-1">Geçmişi gerçekten sildi mi?</p>
                 </div>
               </div>
               <div class="text-right flex-shrink-0">
-                <span class="text-sm font-bold text-neon-red">14.90 ₺</span>
+                <span class="text-lg font-black text-neon-red">19.90 ₺</span>
               </div>
             </div>
           </button>
 
-          <!-- Package 2 (Popular) -->
-          <button onclick="openShopierPayment(2)" class="paywall-card popular p-5 text-left group relative"
-            id="pkg-btn-2">
+          <!-- Package 2 (Popular) — Full viral CTA treatment -->
+          <div class="relative" id="pkg-btn-2-wrap">
             <!-- Popular badge -->
             <div
-              class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-neon-red text-[10px] font-bold text-white uppercase tracking-wider shadow-lg shadow-neon-red/30">
-              🔥 En Popüler
+              class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-bold text-white uppercase tracking-wider z-10"
+              style="background: linear-gradient(90deg,#FF0033,#FF4455); box-shadow: 0 2px 12px #FF003360;">
+              🔥 En Çok Tercih Edilen
             </div>
-            <div class="flex items-start justify-between mt-1">
-              <div class="flex items-start gap-4">
-                <div
-                  class="w-10 h-10 rounded-xl bg-neon-red/10 border border-neon-red/30 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-5 h-5 text-neon-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
+            <button onclick="openShopierPayment(2)"
+              class="unlock-btn w-full pt-8 pb-6 px-6 rounded-2xl text-left group relative" id="pkg-btn-2">
+              <div class="flex items-start justify-between gap-3 relative z-10">
+                <div class="flex items-start gap-3 min-w-0">
+                  <span class="text-2xl flex-shrink-0 mt-0.5">🧠</span>
+                  <div class="min-w-0">
+                    <h4 class="text-base font-black text-white leading-tight">Freudyen Bilinçaltı Analizi</h4>
+                    <p class="text-sm text-white/70 mt-1">Gizli manipülasyon & travma haritası</p>
+                    <p class="text-xs text-white/50 mt-2 font-mono">✦ Sadece 49.90 ₺ — Gerçeklerle Yüzleş</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 class="text-sm font-bold text-white">Freudyen Bilinçaltı Analizi</h4>
-                  <p class="text-xs text-gray-400 mt-1">Gizli manipülasyon taktikleri ve travmaları.</p>
+                <div class="text-right flex-shrink-0">
+                  <span class="text-2xl font-black text-white">49.90 ₺</span>
+                  <p class="text-[10px] text-white/50 mt-0.5 font-mono">HEMEN ERİŞ</p>
                 </div>
               </div>
-              <div class="text-right flex-shrink-0">
-                <span class="text-sm font-bold text-neon-red">49.90 ₺</span>
-              </div>
-            </div>
-          </button>
+            </button>
+          </div>
 
           <!-- Package 3 -->
           <button onclick="openShopierPayment(3)" class="paywall-card p-5 text-left group" id="pkg-btn-3">
-            <div class="flex items-start justify-between">
-              <div class="flex items-start gap-4">
-                <div
-                  class="w-10 h-10 rounded-xl bg-dark-card-hover border border-dark-border flex items-center justify-center flex-shrink-0 group-hover:border-neon-red/30 transition-colors">
-                  <svg class="w-5 h-5 text-gray-500 group-hover:text-neon-red transition-colors" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">Kıyamet Senaryosu
-                  </h4>
-                  <p class="text-xs text-gray-500 mt-1">Bu ilişki nasıl ve kimin yüzünden bitecek?</p>
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-start gap-3 min-w-0">
+                <span class="text-2xl flex-shrink-0 mt-0.5">💀</span>
+                <div class="min-w-0">
+                  <h4 class="text-base font-bold text-gray-200 group-hover:text-white transition-colors leading-tight">
+                    Kıyamet Senaryosu</h4>
+                  <p class="text-sm text-gray-500 mt-1">Bu ilişki nasıl ve kimin yüzünden bitecek?</p>
                 </div>
               </div>
               <div class="text-right flex-shrink-0">
-                <span class="text-sm font-bold text-neon-red">89.90 ₺</span>
+                <span class="text-lg font-black text-neon-red">89.90 ₺</span>
               </div>
             </div>
           </button>
 
         </div>
 
-        <!-- "Ödememi Tamamladım" Confirmation Button (Hidden by default) -->
-        <div id="payment-confirm-section" class="hidden mt-6">
+        <!-- Payment Pending Info (shown after Shopier tab opens) -->
+        <div id="payment-pending-section" class="hidden mt-6">
           <div class="w-full h-px bg-gradient-to-r from-transparent via-neon-red/30 to-transparent mb-4"></div>
-          <p class="text-center text-xs text-gray-400 mb-3">
-            Ödemenizi yaptıktan sonra aşağıdaki butona tıklayın.
-          </p>
-          <button id="confirm-payment-btn" onclick="confirmPaymentAndAnalyze()"
-            class="w-full py-4 rounded-2xl text-white font-bold text-base tracking-wide relative overflow-hidden group cta-btn animate-glow-pulse">
-            <span class="relative z-10 flex items-center justify-center gap-3">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              Ödememi Tamamladım, Analizi Göster
-            </span>
-            <div
-              class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent">
+          <div class="flex flex-col items-center gap-3 py-4 px-5 rounded-2xl bg-dark-card border border-neon-red/20">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></div>
+              <span class="text-sm font-semibold text-gray-300">Ödeme bekleniyor…</span>
             </div>
-          </button>
-          <p class="text-center text-[10px] text-gray-600 mt-3 font-mono" id="selected-package-info"></p>
+            <p class="text-xs text-gray-500 text-center font-mono leading-relaxed">
+              Shopier'da ödemeyi tamamladıktan sonra<br>otomatik olarak burada sonucunuzu göreceksiniz.
+            </p>
+            <p class="text-[10px] text-gray-600 font-mono" id="selected-package-info"></p>
+          </div>
         </div>
 
         <!-- Bottom disclaimer -->
-        <p class="text-center text-[10px] text-gray-600 mt-6 font-mono">
+        <p class="text-center text-[11px] text-gray-600 mt-6 font-mono">
           🔒 256-bit şifreli ödeme • Anında erişim • İade garantisi
         </p>
       </div>
@@ -1566,6 +1711,18 @@
           animateGauge(results.percentage);
         }, 600);
 
+        // Auto-trigger pending premium package (from Shopier redirect via sessionStorage)
+        const pendingPkg = sessionStorage.getItem('pendingPremiumPkg');
+        if (pendingPkg) {
+          const pendingId = parseInt(pendingPkg, 10);
+          if (pendingId && packageNames[pendingId]) {
+            sessionStorage.removeItem('pendingPremiumPkg');
+            selectedPackageId = pendingId;
+            // Give the result screen a moment to render before opening premium modal
+            setTimeout(() => requestPremiumAnalysis(pendingId), 1200);
+          }
+        }
+
       }, 500);
     }
 
@@ -1659,6 +1816,9 @@
         q5: q5.value, q6: q6.value,
         zodiac, messageText
       };
+
+      // Persist to sessionStorage so answers survive Shopier redirect
+      sessionStorage.setItem('formAnswers', JSON.stringify(formAnswers));
 
       // Fade out main content
       const mainContent = document.getElementById('main-content');
@@ -1784,7 +1944,7 @@
       3: 'https://www.shopier.com/RedFlagAI/44667782',
     };
 
-    const packagePrices = { 1: '14.90 ₺', 2: '49.90 ₺', 3: '89.90 ₺' };
+    const packagePrices = { 1: '19.90 ₺', 2: '49.90 ₺', 3: '89.90 ₺' };
 
     // ========================================
     // === PREMIUM: Loading messages ===
@@ -1826,37 +1986,97 @@
         selectedBtn.style.boxShadow = '0 0 25px #FF003340';
       }
 
-      // Show confirmation button
-      const confirmSection = document.getElementById('payment-confirm-section');
+      // Show pending info (no manual bypass button — analysis triggers only via URL redirect)
+      const pendingSection = document.getElementById('payment-pending-section');
       const packageInfo = document.getElementById('selected-package-info');
-      confirmSection.classList.remove('hidden');
-      packageInfo.textContent = '✅ Seçili Paket: ' + packageNames[packageId] + ' — ' + packagePrices[packageId];
+      pendingSection.classList.remove('hidden');
+      packageInfo.textContent = 'Seçili Paket: ' + packageNames[packageId] + ' — ' + packagePrices[packageId];
 
-      // Scroll to confirmation button
+      // Scroll to pending info
       setTimeout(() => {
-        confirmSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        pendingSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 300);
     }
 
     // ========================================
-    // === SHOPIER: Confirm Payment & Start API ===
+    // === URL-BASED PAYMENT VERIFICATION ===
+    // Payment success is ONLY triggered when Shopier
+    // redirects back with ?status=success&pkg=N in URL.
+    // There is NO manual bypass button.
     // ========================================
     let premiumRequestInProgress = false;
 
-    function confirmPaymentAndAnalyze() {
-      if (!selectedPackageId || premiumRequestInProgress) return;
+    (function checkPaymentRedirect() {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('status');
+      const pkgParam = params.get('pkg');
 
-      // GA Event: payment_confirmed
+      if (status !== 'success' || !pkgParam) return;
+
+      const packageId = parseInt(pkgParam, 10);
+      if (!packageId || !packageNames[packageId]) return;
+
+      // Clean the URL so refreshing won't re-trigger
+      const cleanUrl = window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+
+      // GA Event: payment_confirmed via redirect
       if (typeof gtag === 'function') {
         gtag('event', 'payment_confirmed', {
           event_category: 'payment',
-          event_label: packageNames[selectedPackageId],
-          value: selectedPackageId,
+          event_label: packageNames[packageId],
+          value: packageId,
         });
       }
 
-      requestPremiumAnalysis(selectedPackageId);
-    }
+      // We need the form answers to run the analysis.
+      // Try in-memory first, then sessionStorage (persisted across Shopier redirect)
+      function tryLaunchPremium() {
+        // Restore formAnswers from sessionStorage if not in memory
+        if (!formAnswers || !formAnswers.q1) {
+          const saved = sessionStorage.getItem('formAnswers');
+          if (saved) {
+            try { formAnswers = JSON.parse(saved); } catch (e) { }
+          }
+        }
+
+        if (formAnswers && formAnswers.q1) {
+          selectedPackageId = packageId;
+          // The form was already submitted — we need to calculate & show free results first,
+          // then auto-trigger the premium report.
+          // Store pending pkg so showResults() picks it up.
+          sessionStorage.setItem('pendingPremiumPkg', packageId);
+
+          // Calculate results from stored answers and show them,
+          // which will then auto-trigger the premium modal.
+          const r = calculateResults(
+            formAnswers.q1, formAnswers.q2, formAnswers.q3,
+            formAnswers.q5, formAnswers.q6, formAnswers.zodiac,
+            formAnswers.messageText
+          );
+
+          // Hide main content & show loading briefly, then showResults
+          const mainContent = document.getElementById('main-content');
+          const formFooter = document.getElementById('form-footer');
+          if (mainContent) { mainContent.style.display = 'none'; }
+          if (formFooter) { formFooter.style.display = 'none'; }
+
+          showResults(r);
+        } else {
+          // User opened a fresh tab after payment with no prior form data
+          const notice = document.createElement('div');
+          notice.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-dark-card border border-neon-red/40 text-xs text-gray-300 font-mono shadow-xl text-center';
+          notice.innerHTML = '✅ Ödemen onaylandı! Formu doldurup analizi başlat, ardından premium raporun otomatik açılacak.';
+          // Store packageId so showResults() picks it up after form submit
+          sessionStorage.setItem('pendingPremiumPkg', packageId);
+          document.body.appendChild(notice);
+          setTimeout(() => notice.remove(), 8000);
+        }
+      }
+
+      // Wait a tick to ensure formAnswers is in scope
+      setTimeout(tryLaunchPremium, 100);
+    })();
 
     // ========================================
     // === PREMIUM: Request Claude Analysis ===
