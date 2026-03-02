@@ -177,17 +177,17 @@
 
     /* CTA Button glow */
     .cta-btn {
-      background: linear-gradient(135deg, #FF0033 0%, #CC0029 100%);
+      background: linear-gradient(135deg, #FF0044 0%, #FF0066 100%);
       transition: all 0.3s ease;
     }
 
     .cta-btn:hover {
-      box-shadow: 0 0 30px #FF003366, 0 0 80px #FF003333;
-      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 40px #FF0066AA, 0 0 100px #FF0044AA;
+      transform: translateY(-2px) scale(1.04);
     }
 
     .cta-btn:active {
-      transform: translateY(0) scale(0.98);
+      transform: translateY(0) scale(0.96);
     }
 
     /* === VIRAL UNLOCK BUTTON === */
@@ -329,12 +329,13 @@
     /* Result Card — Instagram Story format */
     .result-card {
       width: 340px;
-      background: linear-gradient(180deg, #12121A 0%, #0A0A0F 50%, #12121A 100%);
-      border: 1px solid #FF003322;
+      background: linear-gradient(180deg, #1A1A2A 0%, #0A0A0F 60%, #1A1A2A 100%);
+      border: 1px solid #FF0033AA;
       border-radius: 24px;
-      box-shadow: 0 0 60px #FF003318, 0 20px 60px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 80px #FF0033AA, 0 30px 80px rgba(0, 0, 0, 0.7);
       position: relative;
       overflow: hidden;
+      padding: 1.5rem;
     }
 
     .result-card::before {
@@ -347,6 +348,7 @@
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
+      mask: none;
       pointer-events: none;
     }
 
@@ -716,7 +718,7 @@
   </style>
 </head>
 
-<body class="bg-dark-bg text-gray-200 font-sans noise-bg grid-pattern min-h-screen overflow-x-hidden">
+<body class="bg-dark-bg text-gray-100 font-sans noise-bg grid-pattern min-h-screen overflow-x-hidden">
 
   <!-- Ambient Glow Orbs -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -1403,7 +1405,7 @@
           <!-- Card Scroll Hint -->
           <div class="card-scroll-hint w-full border-t border-dark-border/40 mt-5"
             style="margin-left:-2rem;margin-right:-2rem;width:calc(100% + 4rem);">
-            <span class="text-[10px] font-mono text-gray-600 tracking-widest uppercase">Aşağı Kaydır</span>
+            <span class="text-[10px] font-mono text-gray-100 tracking-widest uppercase">Aşağı Kaydır</span>
             <div class="card-scroll-dots flex gap-1.5">
               <span></span><span></span><span></span>
             </div>
