@@ -155,24 +155,30 @@
 
     /* Custom radio card styles */
     .option-card {
+      background: #1A1A2A;
+      border: 1px solid rgba(255, 0, 51, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #e0e0e0;
     }
 
     .option-card:hover {
       transform: translateY(-2px);
-      border-color: #FF003366;
-      background-color: #1A1A25;
+      border-color: #FF0033;
+      background: #1A1A35;
+      box-shadow: 0 0 30px #FF0033AA;
     }
 
     .option-card.selected {
-      border-color: #FF0033;
-      background: linear-gradient(135deg, #FF003311 0%, #FF003308 100%);
-      box-shadow: 0 0 20px #FF003322, inset 0 0 20px #FF003308;
+      border-color: #FF0066;
+      background: linear-gradient(135deg, #FF0044 0%, #FF0066 100%);
+      box-shadow: 0 0 40px #FF0066AA, inset 0 0 20px #FF0044AA;
     }
 
     .option-card.selected .card-indicator {
-      background: #FF0033;
-      box-shadow: 0 0 10px #FF003388;
+      background: #FF0066;
+      box-shadow: 0 0 12px #FF0066AA;
     }
 
     /* CTA Button glow */
@@ -188,6 +194,38 @@
 
     .cta-btn:active {
       transform: translateY(0) scale(0.96);
+    }
+
+    /* Navbar link styling */
+    .navbar-link {
+      color: #FFFFFF;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-link:hover {
+      text-decoration: underline;
+      text-shadow: 0 0 8px #FF0033;
+    }
+
+    /* Hero down arrow */
+    .hero-down-arrow {
+      font-size: 2rem;
+      color: #FF0033;
+      margin-top: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     /* === VIRAL UNLOCK BUTTON === */
@@ -742,7 +780,7 @@
                 d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
             </svg>
           </div>
-          <span class="text-lg font-bold tracking-tight">
+          <span class="text-xl font-bold tracking-tight">
             <span class="text-white">Redflag</span><span class="text-neon-red">.ai</span>
           </span>
         </div>
@@ -761,7 +799,7 @@
       <div class="max-w-3xl mx-auto text-center">
         <!-- Badge -->
         <div
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-red/10 border border-neon-red/20 text-neon-red text-xs font-mono mb-8 animate-fade-in-up opacity-0">
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-red/10 border border-neon-red/20 text-neon-red text-sm font-mono mb-8 animate-fade-in-up opacity-0">
           <span class="w-1.5 h-1.5 rounded-full bg-neon-red animate-pulse"></span>
           <span class="tracking-widest">AI ANALİZ SİSTEMİ AKTİF</span>
         </div>
@@ -774,6 +812,7 @@
             Yüzüyle</span><br />
           <span class="text-white">Yüzleş.</span>
         </h1>
+        <div class="hero-down-arrow animate-bounce">↓</div>
 
         <!-- Subtitle -->
         <p
@@ -1244,7 +1283,7 @@
                 yapıştır.</h3>
             </div>
             <textarea id="whatsapp-messages" name="messages" rows="5"
-              class="w-full bg-dark-card border border-dark-border rounded-xl px-5 py-4 text-gray-300 text-sm font-medium placeholder-gray-600 focus:outline-none focus:border-neon-red/50 focus:ring-1 focus:ring-neon-red/30 transition-all resize-none hover:border-gray-600"
+              class="w-full bg-dark-card border border-neon-red/30 rounded-xl px-5 py-4 text-gray-100 text-sm font-medium placeholder-gray-500 focus:outline-none focus:border-neon-red/70 focus:ring-1 focus:ring-neon-red/50 transition-all resize-none hover:border-neon-red/50"
               placeholder="Mesajları buraya yapıştır...&#10;Örn:&#10;— aynen&#10;— tamam görüşürüz&#10;— sen bilirsin..."></textarea>
             <div class="flex items-start gap-2 mt-3 px-1">
               <span class="text-neon-red text-xs mt-0.5">🔒</span>
