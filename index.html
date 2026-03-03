@@ -816,14 +816,14 @@
 
         <!-- Subtitle -->
         <p
-          class="text-gray-300 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed mb-5 animate-fade-in-up opacity-0 stagger-2">
+          class="text-gray-200 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed mb-5 animate-fade-in-up opacity-0 stagger-2">
           Yapay zeka, partnerinin gizli <span class="text-neon-red font-bold">kırmızı bayraklarını</span> ve toksik
           özelliklerini saniyeler içinde analiz ediyor.
         </p>
 
         <!-- Stats row -->
         <div
-          class="flex items-center justify-center gap-5 text-xs font-mono text-gray-500 animate-fade-in-up opacity-0 stagger-3">
+          class="flex items-center justify-center gap-5 text-xs font-mono text-gray-400 animate-fade-in-up opacity-0 stagger-3">
           <span class="flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
             2.4M+ analiz
@@ -852,7 +852,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">01</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Tartışma anında ilk tepkisi ne olur?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Tartışma anında ilk tepkisi ne olur?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-options">
               <label
@@ -946,7 +946,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">02</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Instagram Keşfet'i neyle dolu?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Instagram Keşfet'i neyle dolu?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q2-options">
               <label
@@ -1040,7 +1040,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">03</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Sana en sık nasıl hitap eder?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Sana en sık nasıl hitap eder?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q3-options">
               <label
@@ -1134,7 +1134,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">04</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Partnerinin Burcu?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Partnerinin Burcu?</h3>
             </div>
             <div class="relative">
               <select id="zodiac-select" name="zodiac"
@@ -1170,7 +1170,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">05</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Hesap ödenirken tavrı nasıldır?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Hesap ödenirken tavrı nasıldır?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q5-options">
               <label
@@ -1264,7 +1264,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">06</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">Dışarıda garson/kasiyerle sorun yaşasa ne
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">Dışarıda garson/kasiyerle sorun yaşasa ne
                 yapar?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q6-options">
@@ -1332,6 +1332,22 @@
                   </div>
                 </div>
               </label>
+              <label
+                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                data-question="q6" data-value="mukemmel">
+                <input type="radio" name="q6" value="mukemmel" class="sr-only" />
+                <div class="flex items-center gap-3">
+                  <div
+                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
+                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                  </div>
+                  <div>
+                    <span class="text-2xl mb-1 block">😇</span>
+                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hiç sorun
+                      yaşamaz, her şey mükemmel</span>
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
 
@@ -1343,7 +1359,7 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">💬</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-200">WhatsApp'taki son 10 mesajını buraya
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100">WhatsApp'taki son 10 mesajını buraya
                 yapıştır.</h3>
             </div>
             <textarea id="whatsapp-messages" name="messages" rows="5"
@@ -1748,30 +1764,35 @@
         ses: { points: 7, label: 'Agresif' },
         espri: { points: 3, label: 'Kaçak' },
         mantik: { points: 6, label: 'Manipülatif' },
+        sakin: { points: 4, label: 'Aşırı Kontrollü' },
       },
       q2: {
         araba: { points: 3, label: null },
         rastgele: { points: 10, label: 'Sadakatsiz' },
         motivasyon: { points: 7, label: 'Kriptocu/Sigma' },
         hayvan: { points: 1, label: null },
+        kultur: { points: 4, label: 'Entelektüel Narsist' },
       },
       q3: {
         bebegim: { points: 3, label: null },
         isim: { points: 5, label: null },
         askim: { points: 4, label: null },
         kanka: { points: 9, label: 'Saygısız' },
+        canim: { points: 4, label: 'Love-Bombing' },
       },
       q5: {
         alman: { points: 2, label: null },
         cimri: { points: 10, label: 'Cimri' },
         lafci: { points: 7, label: 'Hesapçı' },
         sov: { points: 5, label: 'Şovmen' },
+        sessiz_oder: { points: 5, label: 'Finansal Kontrol' },
       },
       q6: {
         ezer: { points: 10, label: 'Zorba' },
         sessiz_sinir: { points: 6, label: null },
         bagirir: { points: 10, label: 'Kontrolsüz' },
         kibar: { points: 1, label: null },
+        mukemmel: { points: 6, label: 'Sahte Mükemmelci' },
       },
     };
 
@@ -1821,11 +1842,11 @@
     // === V2 CALCULATE SCORE ===
     // ========================================
     function calculateResults(q1Val, q2Val, q3Val, q5Val, q6Val, zodiacVal, messageText) {
-      const s1 = scoringData.q1[q1Val];
-      const s2 = scoringData.q2[q2Val];
-      const s3 = scoringData.q3[q3Val];
-      const s5 = scoringData.q5[q5Val];
-      const s6 = scoringData.q6[q6Val];
+      const s1 = scoringData.q1[q1Val] || { points: 0, label: null };
+      const s2 = scoringData.q2[q2Val] || { points: 0, label: null };
+      const s3 = scoringData.q3[q3Val] || { points: 0, label: null };
+      const s5 = scoringData.q5[q5Val] || { points: 0, label: null };
+      const s6 = scoringData.q6[q6Val] || { points: 0, label: null };
 
       // --- 1) Base Score: 0-60 range (max per question ~10, 6 questions) ---
       let baseScore = s1.points + s2.points + s3.points + s5.points + s6.points;
