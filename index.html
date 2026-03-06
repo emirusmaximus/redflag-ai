@@ -2,6 +2,14 @@
 <html lang="tr">
 
 <head>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "vrk0ojo5w1");
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QD9DJY3791"></script>
   <script>
@@ -2425,6 +2433,11 @@
           tagsContainer.appendChild(tag);
         }
 
+        // GA4: Test Bitişi
+        if (typeof gtag === 'function') {
+          gtag('event', 'test_complete');
+        }
+
         // Show result screen
         resultScreen.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -2488,6 +2501,15 @@
     document.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
         const question = card.dataset.question;
+
+        // GA4: Test Başlangıcı
+        if (question === 'q1' && !window.testStarted) {
+          window.testStarted = true;
+          if (typeof gtag === 'function') {
+            gtag('event', 'test_start');
+          }
+        }
+
         document.querySelectorAll(`.option-card[data-question="${question}"]`).forEach(c => {
           c.classList.remove('selected');
         });
@@ -2654,6 +2676,23 @@
       revealObserver.observe(el);
     });
 
+    // GA4: Paywall Görünümü
+    const paywallObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !window.paywallViewed) {
+          window.paywallViewed = true;
+          if (typeof gtag === 'function') {
+            gtag('event', 'view_paywall');
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const paywallEl = document.getElementById('paywall-packages');
+    if (paywallEl) {
+      paywallObserver.observe(paywallEl);
+    }
+
     // ========================================
     // === PREMIUM: Package names for UI ===
     // ========================================
@@ -2696,12 +2735,10 @@
     function openShopierPayment(packageId) {
       selectedPackageId = packageId;
 
-      // GA Event: package_click (user clicked to pay)
+      // GA4: Paket Seçimi
       if (typeof gtag === 'function') {
-        gtag('event', 'package_click', {
-          event_category: 'payment',
-          event_label: packageNames[packageId],
-          value: packageId,
+        gtag('event', 'click_package', {
+          'package_name': packageNames[packageId] || ('Package_' + packageId)
         });
       }
 
@@ -2750,13 +2787,9 @@
       const cleanUrl = window.location.pathname;
       window.history.replaceState({}, document.title, cleanUrl);
 
-      // GA Event: payment_confirmed via redirect
+      // GA4: Başarılı Satış
       if (typeof gtag === 'function') {
-        gtag('event', 'payment_confirmed', {
-          event_category: 'payment',
-          event_label: packageNames[packageId],
-          value: packageId,
-        });
+        gtag('event', 'purchase_complete');
       }
 
       // We need the form answers to run the analysis.
