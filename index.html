@@ -163,30 +163,58 @@
 
     /* Custom radio card styles */
     .option-card {
-      background: #1A1A2A;
-      border: 1px solid rgba(255, 0, 51, 0.2);
-      border-radius: 12px;
-      padding: 1rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(26, 26, 42, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 0, 51, 0.12);
+      border-radius: 14px;
+      padding: 14px 16px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       color: #e0e0e0;
     }
 
     .option-card:hover {
-      transform: translateY(-2px);
-      border-color: #FF0033;
-      background: #1A1A35;
-      box-shadow: 0 0 30px #FF0033AA;
+      transform: translateY(-1px);
+      border-color: rgba(255, 0, 51, 0.45);
+      background: rgba(26, 26, 53, 0.75);
+      box-shadow: 0 4px 24px rgba(255, 0, 51, 0.15);
     }
 
     .option-card.selected {
-      border-color: #FF0066;
-      background: linear-gradient(135deg, #FF0044 0%, #FF0066 100%);
-      box-shadow: 0 0 40px #FF0066AA, inset 0 0 20px #FF0044AA;
+      border-color: #FF0033;
+      background: linear-gradient(135deg, rgba(255,0,51,0.18) 0%, rgba(255,0,68,0.12) 100%);
+      box-shadow: 0 0 0 1px rgba(255,0,51,0.3), 0 4px 20px rgba(255,0,51,0.2);
     }
 
     .option-card.selected .card-indicator {
-      background: #FF0066;
-      box-shadow: 0 0 12px #FF0066AA;
+      border-color: #FF0033;
+      background: #FF0033;
+      box-shadow: 0 0 10px rgba(255,0,51,0.5);
+    }
+
+    .option-card.selected .card-indicator .indicator-dot {
+      background: #fff;
+    }
+
+    .option-card .opt-emoji {
+      font-size: 20px;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 28px;
+      text-align: center;
+    }
+
+    .option-card .opt-text {
+      font-size: 13.5px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.78);
+      transition: color 0.2s ease;
+    }
+
+    .option-card:hover .opt-text,
+    .option-card.selected .opt-text {
+      color: rgba(255,255,255,0.95);
     }
 
     /* CTA Button glow */
@@ -538,24 +566,27 @@
     /* === MOBILE-FIRST RESPONSIVE === */
     @media (max-width: 640px) {
 
-      /* Bigger base font for mobile readability */
       body {
-        font-size: 17px;
+        font-size: 16px;
       }
 
-      /* Touch-friendly tap targets */
+      /* Touch-friendly option cards */
       .option-card {
-        min-height: 60px;
-        padding: 16px 14px !important;
+        min-height: 52px;
+        padding: 12px 12px !important;
       }
-
-      .option-card span.text-sm {
-        font-size: 15px !important;
+      .option-card .opt-text {
+        font-size: 13px !important;
+        line-height: 1.4;
+      }
+      .option-card .opt-emoji {
+        font-size: 18px;
+        width: 24px;
       }
 
       .paywall-card {
-        min-height: 68px;
-        padding: 18px 16px !important;
+        min-height: 64px;
+        padding: 16px 14px !important;
       }
 
       /* Hero adjustments */
@@ -568,7 +599,6 @@
         width: 92vw !important;
         max-width: 390px;
       }
-
       .gauge-ring {
         width: 140px !important;
         height: 140px !important;
@@ -594,6 +624,68 @@
         padding-top: 20px !important;
         padding-bottom: 20px !important;
         border-radius: 18px !important;
+      }
+
+      /* Testimonials mobile */
+      .testimonials-section {
+        max-width: 100%;
+        padding: 0 4px;
+      }
+      .testimonial-card {
+        flex: 0 0 200px;
+        padding: 12px 12px 10px;
+      }
+      .testimonial-card .tc-text {
+        font-size: 12px;
+      }
+      .testimonials-label {
+        font-size: 10px;
+      }
+
+      /* Rec banner mobile */
+      .rec-banner {
+        padding: 14px 14px;
+        border-radius: 14px;
+      }
+      .rec-banner-title { font-size: 12px; }
+      .rec-banner-body { font-size: 11.5px; }
+
+      /* Sticky CTA bar mobile */
+      .sticky-cta-inner {
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+        gap: 8px;
+      }
+      .sticky-cta-pkg { font-size: 12px; }
+      .sticky-cta-label { font-size: 10px; }
+      .sticky-cta-btn {
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+    }
+
+    /* iPhone SE / very small screens */
+    @media (max-width: 375px) {
+      .option-card {
+        padding: 10px 10px !important;
+      }
+      .option-card .opt-text {
+        font-size: 12px !important;
+      }
+      .option-card .opt-emoji {
+        font-size: 16px;
+        width: 22px;
+      }
+      .testimonial-card {
+        flex: 0 0 180px;
+        padding: 10px 10px 8px;
+      }
+      .testimonial-card .tc-text {
+        font-size: 11px;
+      }
+      .sticky-cta-pkg { font-size: 11px; }
+      .sticky-cta-btn {
+        font-size: 11px;
+        padding: 8px 12px;
       }
     }
 
@@ -750,6 +842,85 @@
       pointer-events: none;
     }
 
+    /* === STICKY BOTTOM CTA BAR === */
+    .sticky-cta-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 0 env(safe-area-inset-bottom, 0) 0;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 0, 51, 0.2);
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .sticky-cta-bar.visible {
+      transform: translateY(0);
+    }
+    .sticky-cta-bar.hidden {
+      display: none !important;
+    }
+    .sticky-cta-inner {
+      max-width: 448px;
+      margin: 0 auto;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .sticky-cta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .sticky-cta-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .sticky-cta-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-cta-pkg {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-cta-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FF0033;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(255, 0, 51, 0.4);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .sticky-cta-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
     /* === IMPROVED SCROLL CUE === */
     .scroll-cue-pill {
       display: inline-flex;
@@ -760,6 +931,146 @@
       background: rgba(255, 0, 51, 0.07);
       border: 1px solid rgba(255, 0, 51, 0.18);
       backdrop-filter: blur(8px);
+    }
+
+    /* === TESTIMONIALS STRIP === */
+    .testimonials-section {
+      width: 100%;
+      max-width: 448px;
+      margin: 0 auto 16px auto;
+      padding: 0 0 4px 0;
+    }
+    .testimonials-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
+    }
+    .testimonials-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 2px 6px 2px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, transparent 0%, black 4%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 92%, transparent 100%);
+    }
+    .testimonials-scroll::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+      flex: 0 0 220px;
+      scroll-snap-align: start;
+      background: rgba(18, 18, 26, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,0,51,0.10);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .testimonial-card .tc-stars {
+      color: #FF0033;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .testimonial-card .tc-text {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.82);
+    }
+    .testimonial-card .tc-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: auto;
+    }
+    .testimonial-card .tc-badge {
+      display: inline-block;
+      background: rgba(255,0,51,0.12);
+      color: rgba(255,80,80,0.9);
+      border-radius: 50px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* === AI RECOMMENDATION BANNER === */
+    .rec-banner {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(255,0,51,0.10) 0%, rgba(18,18,26,0.7) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,0,51,0.20);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      display: none;
+    }
+    .rec-banner.visible { display: block; }
+    .rec-banner-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .rec-banner-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,0,51,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .rec-banner-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+    }
+    .rec-banner-body {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+    }
+    .rec-banner-pkg {
+      display: inline-block;
+      margin-top: 8px;
+      background: rgba(255,0,51,0.18);
+      color: #FF4455;
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    /* Highlight recommended package card */
+    .pkg-recommended {
+      border-color: rgba(255,0,51,0.45) !important;
+      box-shadow: 0 0 0 1px rgba(255,0,51,0.2), 0 4px 20px rgba(255,0,51,0.10) !important;
+      position: relative;
+    }
+    .pkg-recommended-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #FF0033;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 50px;
+      white-space: nowrap;
+      z-index: 2;
+      box-shadow: 0 2px 12px rgba(255,0,51,0.35);
     }
   </style>
 </head>
@@ -824,18 +1135,16 @@
         <h1
           class="text-5xl sm:text-6xl md:text-7xl font-black leading-[1.08] tracking-tighter mb-6 animate-fade-in-up opacity-0 stagger-1"
           data-i18n="hero_title">
-          İlişkinin<br />
-          <span class="neon-text text-neon-red" style="text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;">Karanlık
-            Yüzüyle</span><br />
-          <span class="text-white">Yüzleş.</span>
+          Herkes Görüyor.<br />
+          <span class="neon-text text-neon-red" style="text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;">Sadece</span><br />
+          <span class="text-white">Sen Değil.</span>
         </h1>
         <div class="hero-down-arrow animate-bounce">↓</div>
 
         <!-- Subtitle -->
         <p class="text-gray-200 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed mb-5 animate-fade-in-up opacity-0 stagger-2"
           data-i18n="hero_subtitle">
-          Yapay zeka, partnerinin gizli <span class="text-neon-red font-bold">kırmızı bayraklarını</span> ve toksik
-          özelliklerini saniyeler içinde analiz ediyor.
+          İlişkinin içindeyken bazı şeyler <span class="text-neon-red font-bold">görünmez olur.</span> Dışarıdan bakan bir göz, içeriden bin gözden her zaman daha net konuşur.
         </p>
 
         <!-- Stats row -->
@@ -869,88 +1178,72 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">01</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q1_title">Tartışma anında ilk
-                tepkisi ne olur?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q1_title">Seni üzen bir şeyi dile getirdiğinde ilk tepkisi ne olur?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-options">
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q1" data-value="sessiz">
-                <input type="radio" name="q1" value="sessiz" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q1" data-value="itiraz">
+                <input type="radio" name="q1" value="itiraz" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🤐</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sessizliğe
-                      bürünür</span>
-                  </div>
+                  <span class="opt-emoji">🚫</span>
+                  <span class="opt-text">"Abartıyorsun, çok hassassın" diyerek geçiştirir</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q1" data-value="ses">
-                <input type="radio" name="q1" value="ses" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q1" data-value="saldiri">
+                <input type="radio" name="q1" value="saldiri" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🗣️</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sesini
-                      yükseltir</span>
-                  </div>
+                  <span class="opt-emoji">⚔️</span>
+                  <span class="opt-text">Konuyu anında benim hatalarıma çevirir, savunmaya geçerim</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q1" data-value="espri">
-                <input type="radio" name="q1" value="espri" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q1" data-value="buz">
+                <input type="radio" name="q1" value="buz" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">😂</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Espriye
-                      vurur</span>
-                  </div>
+                  <span class="opt-emoji">🧊</span>
+                  <span class="opt-text">Hiç ses çıkarmaz, günlerce soğur — konuşmak istersen sen başlarsın</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
+                class="option-card cursor-pointer group block relative overflow-hidden"
                 data-question="q1" data-value="mantik">
                 <input type="radio" name="q1" value="mantik" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🧠</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Mantıkla
-                      beynimi yakar</span>
-                  </div>
+                  <span class="opt-emoji">🌀</span>
+                  <span class="opt-text">O kadar "mantıklı" konuşur ki tartışma biter, ne düşündüğümü unuturum</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q1" data-value="sakin">
-                <input type="radio" name="q1" value="sakin" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q1" data-value="dinler">
+                <input type="radio" name="q1" value="dinler" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🤗</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sakin sakin
-                      konuşur</span>
-                  </div>
+                  <span class="opt-emoji">💬</span>
+                  <span class="opt-text">Dinler, anlamaya çalışır ya da özür diler</span>
                 </div>
               </label>
             </div>
@@ -964,88 +1257,72 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">02</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q2_title">Instagram Keşfet'i neyle
-                dolu?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q2_title">Arkadaşları, eski sevgilileri veya aile üyeleri hakkında nasıl konuşur?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q2-options">
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q2" data-value="araba">
-                <input type="radio" name="q2" value="araba" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q2" data-value="kral">
+                <input type="radio" name="q2" value="kral" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🏎️</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sadece
-                      arabalar-futbol</span>
-                  </div>
+                  <span class="opt-emoji">👑</span>
+                  <span class="opt-text">Çevresindeki çoğu insan aptal ya da nankör — o istisnai biri</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q2" data-value="rastgele">
-                <input type="radio" name="q2" value="rastgele" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q2" data-value="eski">
+                <input type="radio" name="q2" value="eski" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">👀</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Rastgele
-                      kızlar-erkekler</span>
-                  </div>
+                  <span class="opt-emoji">🔪</span>
+                  <span class="opt-text">Geçmişteki herkes ya "deli"ydi ya "toksik" — hiç suçu olmamış</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q2" data-value="motivasyon">
-                <input type="radio" name="q2" value="motivasyon" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q2" data-value="ikiyuzlu">
+                <input type="radio" name="q2" value="ikiyuzlu" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">📈</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Motivasyon-Borsa</span>
-                  </div>
+                  <span class="opt-emoji">🎭</span>
+                  <span class="opt-text">Yüzlerine güler, arkalarından başka türlü konuşur</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q2" data-value="hayvan">
-                <input type="radio" name="q2" value="hayvan" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q2" data-value="umursamaz">
+                <input type="radio" name="q2" value="umursamaz" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🐱</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kedi-Köpek
-                      videoları</span>
-                  </div>
+                  <span class="opt-emoji">😑</span>
+                  <span class="opt-text">İnsanlara karşı ilgisiz ve soğuk — kimseyi gerçekten umursamaz</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q2" data-value="kultur">
-                <input type="radio" name="q2" value="kultur" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q2" data-value="pozitif">
+                <input type="radio" name="q2" value="pozitif" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">📚</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Bilim/Kitap/Kültür</span>
-                  </div>
+                  <span class="opt-emoji">💚</span>
+                  <span class="opt-text">Genellikle anlayışlı ve empatiyle konuşur</span>
                 </div>
               </label>
             </div>
@@ -1059,88 +1336,72 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">03</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q3_title">Sana en sık nasıl hitap
-                eder?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q3_title">"Hayır" dediğinde ya da bir sınır koyduğunda ne yapar?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q3-options">
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q3" data-value="bebegim">
-                <input type="radio" name="q3" value="bebegim" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q3" data-value="kucumseme">
+                <input type="radio" name="q3" value="kucumseme" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">💕</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Bebeğim-Hayatım</span>
-                  </div>
+                  <span class="opt-emoji">😤</span>
+                  <span class="opt-text">İnce bir alaycılıkla ya da "sen hep böylesin" diyerek küçümser</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q3" data-value="isim">
-                <input type="radio" name="q3" value="isim" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q3" data-value="patlama">
+                <input type="radio" name="q3" value="patlama" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">📛</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">İsminle</span>
-                  </div>
+                  <span class="opt-emoji">🌪️</span>
+                  <span class="opt-text">Tepkisi o kadar yoğun olur ki bir daha "hayır" demek istemem</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q3" data-value="askim">
-                <input type="radio" name="q3" value="askim" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q3" data-value="kurban">
+                <input type="radio" name="q3" value="kurban" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">❤️</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Aşkım</span>
-                  </div>
+                  <span class="opt-emoji">🎭</span>
+                  <span class="opt-text">Kurban rolüne girer — sonunda özür dileyen ben olurum</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q3" data-value="kanka">
-                <input type="radio" name="q3" value="kanka" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q3" data-value="buzul">
+                <input type="radio" name="q3" value="buzul" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🤙</span>
-                    <span
-                      class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kanka-Oğlum-Lan</span>
-                  </div>
+                  <span class="opt-emoji">🥶</span>
+                  <span class="opt-text">Kabul eder ama günlerce sessiz ve mesafeli olur</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q3" data-value="canim">
-                <input type="radio" name="q3" value="canim" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q3" data-value="saygi">
+                <input type="radio" name="q3" value="saygi" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">👑</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Canım /
-                      Tatlım</span>
-                  </div>
+                  <span class="opt-emoji">✅</span>
+                  <span class="opt-text">Saygı gösterir, sınırı tartışmadan kabul eder</span>
                 </div>
               </label>
             </div>
@@ -1190,88 +1451,72 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">05</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q5_title">Hesap ödenirken tavrı
-                nasıldır?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q5_title">İlişkinizde kararlar ve planlar genellikle nasıl şekillenir?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q5-options">
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q5" data-value="alman">
-                <input type="radio" name="q5" value="alman" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q5" data-value="diktator">
+                <input type="radio" name="q5" value="diktator" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🤝</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Alman usulü
-                      teklif eder</span>
-                  </div>
+                  <span class="opt-emoji">🕹️</span>
+                  <span class="opt-text">Kararları hep o alır; itiraz edersem tartışma uzar, eninde sonunda onun dediği olur</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q5" data-value="cimri">
-                <input type="radio" name="q5" value="cimri" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q5" data-value="manipule">
+                <input type="radio" name="q5" value="manipule" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🫣</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hiç elini
-                      cebine atmaz</span>
-                  </div>
+                  <span class="opt-emoji">🎯</span>
+                  <span class="opt-text">Benim fikrimmiş gibi sunar ama aslında hep kendi istediği olur</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q5" data-value="lafci">
-                <input type="radio" name="q5" value="lafci" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q5" data-value="kaos">
+                <input type="radio" name="q5" value="kaos" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🗯️</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hep o öder
-                      ama lafını yapar</span>
-                  </div>
+                  <span class="opt-emoji">🌀</span>
+                  <span class="opt-text">Hiç plan yapmaz, sorumluluk almaz — organize etmek hep bana kalır</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q5" data-value="sov">
-                <input type="radio" name="q5" value="sov" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q5" data-value="gizli_kontrol">
+                <input type="radio" name="q5" value="gizli_kontrol" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">💸</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Şov yaparak
-                      öder</span>
-                  </div>
+                  <span class="opt-emoji">🔇</span>
+                  <span class="opt-text">Seçimi bana bırakır ama hangisini seçsem bir sıkıntı çıkar</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q5" data-value="sessiz_oder">
-                <input type="radio" name="q5" value="sessiz_oder" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q5" data-value="birlikte">
+                <input type="radio" name="q5" value="birlikte" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">💳</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Her zaman o
-                      öder, sesini çıkarmaz</span>
-                  </div>
+                  <span class="opt-emoji">⚖️</span>
+                  <span class="opt-text">Birlikte konuşuruz, orta yol buluruz</span>
                 </div>
               </label>
             </div>
@@ -1285,89 +1530,72 @@
             <div class="flex items-center gap-3 mb-4">
               <span
                 class="flex-shrink-0 w-7 h-7 rounded-lg bg-neon-red/15 border border-neon-red/30 flex items-center justify-center text-neon-red text-xs font-bold font-mono">06</span>
-              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q6_title">Dışarıda
-                garson/kasiyerle sorun yaşasa ne
-                yapar?</h3>
+              <h3 class="text-sm sm:text-base font-semibold text-gray-100" data-i18n="q6_title">Hastalandığında ya da duygusal olarak çöktüğünde tavrı nasıl değişir?</h3>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q6-options">
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q6" data-value="ezer">
-                <input type="radio" name="q6" value="ezer" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q6" data-value="sabir">
+                <input type="radio" name="q6" value="sabir" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">😤</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Çalışanı
-                      ezer</span>
-                  </div>
+                  <span class="opt-emoji">💊</span>
+                  <span class="opt-text">İlk başta ilgilenir ama kısa sürede "hâlâ mı iyi olmadın" moduna geçer</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q6" data-value="sessiz_sinir">
-                <input type="radio" name="q6" value="sessiz_sinir" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q6" data-value="duyarsiz">
+                <input type="radio" name="q6" value="duyarsiz" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">😑</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Sessizce
-                      sinirlenir</span>
-                  </div>
+                  <span class="opt-emoji">🤷</span>
+                  <span class="opt-text">Fazla umursamaz — "herkes zorlu dönem geçirir" der geçer</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q6" data-value="bagirir">
-                <input type="radio" name="q6" value="bagirir" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q6" data-value="kendisi">
+                <input type="radio" name="q6" value="kendisi" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">🤬</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Beni rezil
-                      edecek kadar bağırır</span>
-                  </div>
+                  <span class="opt-emoji">🔄</span>
+                  <span class="opt-text">Teselli ederken konu bir şekilde hep kendi sorunlarına gelir</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q6" data-value="kibar">
-                <input type="radio" name="q6" value="kibar" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q6" data-value="ezer2">
+                <input type="radio" name="q6" value="ezer2" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">😊</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Kibarca
-                      çözer</span>
-                  </div>
+                  <span class="opt-emoji">😒</span>
+                  <span class="opt-text">Zayıf göründüğüm için sabırsızlanır ya da ince bir küçümsemeyle davranır</span>
                 </div>
               </label>
               <label
-                class="option-card cursor-pointer group block p-4 rounded-xl bg-dark-card border border-dark-border relative overflow-hidden"
-                data-question="q6" data-value="mukemmel">
-                <input type="radio" name="q6" value="mukemmel" class="sr-only" />
+                class="option-card cursor-pointer group block relative overflow-hidden"
+                data-question="q6" data-value="yaninda">
+                <input type="radio" name="q6" value="yaninda" class="sr-only" />
                 <div class="flex items-center gap-3">
                   <div
-                    class="card-indicator w-5 h-5 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all">
-                    <div class="w-2 h-2 rounded-full bg-transparent transition-all"></div>
+                    class="card-indicator w-4 h-4 rounded-full border-2 border-gray-600 flex items-center justify-center transition-all flex-shrink-0">
+                    <div class="indicator-dot w-1.5 h-1.5 rounded-full bg-transparent transition-all"></div>
                   </div>
-                  <div>
-                    <span class="text-2xl mb-1 block">😇</span>
-                    <span class="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Hiç sorun
-                      yaşamaz, her şey mükemmel</span>
-                  </div>
+                  <span class="opt-emoji">💙</span>
+                  <span class="opt-text">Gerçekten yanımda olur, ilgilenir</span>
                 </div>
               </label>
             </div>
@@ -1637,8 +1865,26 @@
           ANALİZ ↓</span>
       </div>
 
+      <!-- ===== TESTIMONIALS STRIP ===== -->
+      <div class="testimonials-section reveal-on-scroll" style="animation-delay: 0.65s;" id="testimonials-section">
+        <div class="testimonials-label" data-i18n="testimonials_label">BUNU KULLANANLAR NE DEDİ</div>
+        <div class="testimonials-scroll" id="testimonials-scroll">
+          <!-- Cards injected by renderTestimonials() -->
+        </div>
+      </div>
+
       <!-- ===== PAYWALL SECTION ===== -->
       <div class="w-full max-w-md reveal-on-scroll" id="paywall-packages-wrapper" style="animation-delay: 0.8s;">
+
+        <!-- AI Recommendation Banner -->
+        <div class="rec-banner" id="rec-banner">
+          <div class="rec-banner-header">
+            <div class="rec-banner-icon">🎯</div>
+            <div class="rec-banner-title" id="rec-banner-title"></div>
+          </div>
+          <div class="rec-banner-body" id="rec-banner-body"></div>
+          <div id="rec-banner-pkg-label" class="rec-banner-pkg"></div>
+        </div>
 
         <!-- Paywall header -->
         <div class="text-center mb-6">
@@ -1651,7 +1897,7 @@
         <div class="flex flex-col gap-4" id="paywall-packages">
 
           <!-- Package 1 -->
-          <button onclick="openShopierPayment(1)" class="paywall-card p-5 text-left group" id="pkg-btn-1">
+          <button onclick="confirmAndPay(1)" class="paywall-card p-5 text-left group" id="pkg-btn-1">
             <div class="flex items-start justify-between gap-3">
               <div class="flex items-start gap-3 min-w-0">
                 <span class="text-2xl flex-shrink-0 mt-0.5">🔍</span>
@@ -1677,7 +1923,7 @@
               data-i18n="pkg2_badge">
               🔥 En Çok Tercih Edilen
             </div>
-            <button onclick="openShopierPayment(2)"
+            <button onclick="confirmAndPay(2)"
               class="unlock-btn w-full pt-8 pb-6 px-6 rounded-2xl text-left group relative" id="pkg-btn-2">
               <div class="flex items-start justify-between gap-3 relative z-10">
                 <div class="flex items-start gap-3 min-w-0">
@@ -1699,7 +1945,7 @@
           </div>
 
           <!-- Package 3 -->
-          <button onclick="openShopierPayment(3)" class="paywall-card p-5 text-left group" id="pkg-btn-3">
+          <button onclick="confirmAndPay(3)" class="paywall-card p-5 text-left group" id="pkg-btn-3">
             <div class="flex items-start justify-between gap-3">
               <div class="flex items-start gap-3 min-w-0">
                 <span class="text-2xl flex-shrink-0 mt-0.5">💀</span>
@@ -1718,7 +1964,7 @@
           </button>
 
           <!-- Package 4: Her Şey Dahil -->
-          <button onclick="openShopierPayment(4)" class="paywall-card p-5 text-left group" id="pkg-btn-4">
+          <button onclick="confirmAndPay(4)" class="paywall-card p-5 text-left group" id="pkg-btn-4">
             <div class="flex items-start justify-between gap-3">
               <div class="flex items-start gap-3 min-w-0">
                 <span class="text-2xl flex-shrink-0 mt-0.5">✨</span>
@@ -1776,6 +2022,25 @@
 
     </div>
 
+    <!-- ===== STICKY BOTTOM CTA BAR ===== -->
+    <div id="sticky-cta-bar" class="sticky-cta-bar hidden">
+      <div class="sticky-cta-inner">
+        <div class="sticky-cta-left">
+          <span class="sticky-cta-icon">🎯</span>
+          <div>
+            <div class="sticky-cta-label" id="sticky-cta-label">Sana önerilen paket hazır</div>
+            <div class="sticky-cta-pkg" id="sticky-cta-pkg"></div>
+          </div>
+        </div>
+        <button class="sticky-cta-btn" id="sticky-cta-btn" onclick="stickyCtaClick()">
+          <span id="sticky-cta-btn-text">Tam Raporu Gör</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="relative z-10 py-8 px-6 mt-12 border-t border-dark-border/30">
       <div
@@ -1810,32 +2075,32 @@
     const i18n = {
       tr: {
         hero_badge: "AI ANALİZ SİSTEMİ AKTİF",
-        hero_title: "İlişkinin<br />\n          <span class=\"neon-text text-neon-red\" style=\"text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;\">Karanlık\n            Yüzüyle</span><br />\n          <span class=\"text-white\">Yüzleş.</span>",
-        hero_subtitle: "Yapay zeka, partnerinin gizli <span class=\"text-neon-red font-bold\">kırmızı bayraklarını</span> ve toksik özelliklerini saniyeler içinde analiz ediyor.",
+        hero_title: "Herkes Görüyor.<br />\n          <span class=\"neon-text text-neon-red\" style=\"text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;\">Sadece</span><br />\n          <span class=\"text-white\">Sen Değil.</span>",
+        hero_subtitle: "İlişkinin içindeyken bazı şeyler <span class=\"text-neon-red font-bold\">görünmez olur.</span> Dışarıdan bakan bir göz, içeriden bin gözden her zaman daha net konuşur.",
         stat_1: "2.4M+ analiz",
         stat_2: "%89 doğruluk",
         stat_3: "Ücretsiz",
 
-        q1_title: "Tartışma anında ilk tepkisi ne olur?",
-        q1_sessiz: "Sessizliğe bürünür",
-        q1_ses: "Sesini yükseltir",
-        q1_espri: "Konuyu şakaya vurur",
-        q1_mantik: "Aşırı mantıklı konuşarak seni haksız çıkarır",
-        q1_sakin: "Sakin sakin konuşur",
+        q1_title: "Seni üzen bir şeyi dile getirdiğinde ilk tepkisi ne olur?",
+        q1_itiraz: '"Abartıyorsun, çok hassassın" diyerek geçiştirir',
+        q1_saldiri: "Konuyu anında benim hatalarıma çevirir, savunmaya geçerim",
+        q1_buz: "Hiç ses çıkarmaz, günlerce soğur — konuşmak istersen sen başlarsın",
+        q1_mantik: 'O kadar "mantıklı" konuşur ki tartışma biter, ne düşündüğümü unuturum',
+        q1_dinler: "Dinler, anlamaya çalışır ya da özür diler",
 
-        q2_title: "Instagram Keşfet'i neyle dolu?",
-        q2_araba: "Araba/Motor/Spor",
-        q2_rastgele: "Rastgele karşı cins & Influencerlar",
-        q2_motivasyon: "Milyoner motivasyon/Sigma life",
-        q2_hayvan: "Kediler/Köpekler/Komik videolar",
-        q2_kultur: "Bilim/Kitap/Kültür",
+        q2_title: "Arkadaşları, eski sevgilileri veya aile üyeleri hakkında nasıl konuşur?",
+        q2_kral: "Çevresindeki çoğu insan aptal ya da nankör — o istisnai biri",
+        q2_eski: "Geçmişteki herkes ya \"deli\"ydi ya \"toksik\" — hiç suçu olmamış",
+        q2_ikiyuzlu: "Yüzlerine güler, arkalarından başka türlü konuşur",
+        q2_umursamaz: "İnsanlara karşı ilgisiz ve soğuk — kimseyi gerçekten umursamaz",
+        q2_pozitif: "Genellikle anlayışlı ve empatiyle konuşur",
 
-        q3_title: "Sana en sık nasıl hitap eder?",
-        q3_bebegim: "Bebeğim / Hayatım",
-        q3_isim: "Sadece isminle",
-        q3_askim: "Aşkım",
-        q3_kanka: "Kanka / Oğlum / Lan",
-        q3_canim: "Canım / Tatlım",
+        q3_title: '"Hayır" dediğinde ya da bir sınır koyduğunda ne yapar?',
+        q3_kucumseme: 'İnce bir alaycılıkla ya da "sen hep böylesin" diyerek küçümser',
+        q3_patlama: 'Tepkisi o kadar yoğun olur ki bir daha "hayır" demek istemem',
+        q3_kurban: "Kurban rolüne girer — sonunda özür dileyen ben olurum",
+        q3_buzul: "Kabul eder ama günlerce sessiz ve mesafeli olur",
+        q3_saygi: "Saygı gösterir, sınırı tartışmadan kabul eder",
 
         q4_title: "Partnerinin Burcu?",
         zodiac_placeholder: "Seç bakalım...",
@@ -1852,25 +2117,25 @@
         zodiac_kova: "Kova (Hava)",
         zodiac_balik: "Balık (Su)",
 
-        q5_title: "Hesap ödenirken tavrı nasıldır?",
-        q5_alman: "Alman usulü (net ikiye böler)",
-        q5_cimri: "Cüzdanı evde unutma yalanı",
-        q5_lafci: "Öder ve hep lafını yapar",
-        q5_sov: "Hesap için mekanla/garsonla şovlu tartışma",
-        q5_sessiz_oder: "Her zaman o öder, sesini çıkarmaz",
+        q5_title: "İlişkinizde kararlar ve planlar genellikle nasıl şekillenir?",
+        q5_diktator: "Kararları hep o alır; itiraz edersem tartışma uzar, eninde sonunda onun dediği olur",
+        q5_manipule: "Benim fikrimmiş gibi sunar ama aslında hep kendi istediği olur",
+        q5_kaos: "Hiç plan yapmaz, sorumluluk almaz — organize etmek hep bana kalır",
+        q5_gizli_kontrol: "Seçimi bana bırakır ama hangisini seçsem bir sıkıntı çıkar",
+        q5_birlikte: "Birlikte konuşuruz, orta yol buluruz",
 
-        q6_title: "Dışarıda garson/kasiyerle sorun yaşasa ne yapar?",
-        q6_ezer: "Çalışanı ezer",
-        q6_sessiz_sinir: "Sessizce sinirlenir",
-        q6_bagirir: "Beni rezil edecek kadar bağırır",
-        q6_kibar: "Kibarca çözer",
-        q6_mukemmel: "Hiç sorun yaşamaz, her şey mükemmel",
+        q6_title: "Hastalandığında ya da duygusal olarak çöktüğünde tavrı nasıl değişir?",
+        q6_sabir: 'İlk başta ilgilenir ama kısa sürede "hâlâ mı iyi olmadın" moduna geçer',
+        q6_duyarsiz: '"Herkes zorlu dönem geçirir" der, fazla umursamaz',
+        q6_kendisi: "Teselli ederken konu bir şekilde hep kendi sorunlarına gelir",
+        q6_ezer2: "Zayıf göründüğüm için sabırsızlanır ya da ince bir küçümsemeyle davranır",
+        q6_yaninda: "Gerçekten yanımda olur, ilgilenir",
 
         q_whatsapp_title: "WhatsApp'taki son 10 mesajını buraya yapıştır.",
         privacy_title: "Gizlilik Yemini:",
         privacy_desc: " Mesajların hiçbir sunucuya kaydedilmez. Sadece tarayıcında anlık taranır ve silinir.",
         cta_button: "Gerçekleri Gör (Ücretsiz Analiz)",
-        disclaimer: "🔒 Verileriniz kaydedilmez • Tamamen anonim • Eğlence amaçlıdır",
+        disclaimer: "🔒 Verileriniz hiçbir sunucuya kaydedilmez • Tamamen anonim",
 
         red_flag_label: "RED FLAG",
         detected_archetype: "Tespit Edilen Arketip",
@@ -1886,6 +2151,7 @@
         unlock_subtitle: "🧠 Kişiye özel derin psikolojik rapor",
         unlock_btn: "🔓 Kilidi Aç — Analizi Gör",
 
+        testimonials_label: "BUNU KULLANANLAR NE DEDİ",
         scroll_packages: "Paketleri İncele",
         premium_analysis_arrow: "PREMIUM ANALİZ ↓",
 
@@ -1926,32 +2192,32 @@
       },
       en: {
         hero_badge: "AI ANALYSIS SYSTEM ACTIVE",
-        hero_title: "Face the<br />\n          <span class=\"neon-text text-neon-red\" style=\"text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;\">Dark\n            Side</span><br />\n          <span class=\"text-white\">of Your Relationship.</span>",
-        hero_subtitle: "AI analyzes their hidden <span class=\"text-neon-red font-bold\">red flags</span> and toxic traits in seconds.",
+        hero_title: "Everyone Sees It.<br />\n          <span class=\"neon-text text-neon-red\" style=\"text-shadow: 0 0 20px #FF003388, 0 0 60px #FF003344;\">Except</span><br />\n          <span class=\"text-white\">You.</span>",
+        hero_subtitle: "When you're inside a relationship, some things <span class=\"text-neon-red font-bold\">become invisible.</span> An outside eye always sees more clearly than a thousand eyes from within.",
         stat_1: "2.4M+ scans",
         stat_2: "89% accuracy",
         stat_3: "Free",
 
-        q1_title: "First reaction during an argument?",
-        q1_sessiz: "Silent treatment (ghosts)",
-        q1_ses: "Raises voice (screams)",
-        q1_espri: "Jokes it off (deflecting)",
-        q1_mantik: "Gaslights you with 'logic'",
-        q1_sakin: "Calm af (control freak)",
+        q1_title: "When you raise something that upset you, what's their first move?",
+        q1_itiraz: '"You\'re overreacting / too sensitive" — dismisses it',
+        q1_saldiri: "Flips it immediately — suddenly I'm the one who did something wrong",
+        q1_buz: "Goes completely silent, shuts down for days — I have to come crawling back",
+        q1_mantik: 'Talks so "logically" that the argument ends and I forget what I was upset about',
+        q1_dinler: "Listens, tries to understand, or genuinely apologizes",
 
-        q2_title: "What's on their TikTok/IG FYP?",
-        q2_araba: "Cars/Bikes/Gym bros",
-        q2_rastgele: "Random thirst traps & Influencers",
-        q2_motivasyon: "Sigma male/Hustle culture",
-        q2_hayvan: "Cute cats & dogs",
-        q2_kultur: "Books/Art/Pretentious stuff",
+        q2_title: "How do they talk about friends, exes, or family members?",
+        q2_kral: "Most people are stupid or ungrateful — they're the exception",
+        q2_eski: "Every single ex and old friend was 'crazy' or 'toxic' — they were never at fault",
+        q2_ikiyuzlu: "Sweet to their face, completely different story behind their back",
+        q2_umursamaz: "Emotionally cold and detached — doesn't really care about anyone",
+        q2_pozitif: "Generally empathetic and balanced when talking about others",
 
-        q3_title: "How do they usually call you?",
-        q3_bebegim: "Babe / Baby",
-        q3_isim: "Just your first name",
-        q3_askim: "Love",
-        q3_kanka: "Bro / Dude / Bruh",
-        q3_canim: "Honey / Sweetie",
+        q3_title: 'What happens when you say "no" or set a boundary?',
+        q3_kucumseme: 'Subtle mockery or "there you go again" — makes me feel small',
+        q3_patlama: "Reacts so intensely that I don't want to say no again",
+        q3_kurban: "Plays the victim — I end up being the one apologizing",
+        q3_buzul: 'Says "fine" but goes cold and distant for days',
+        q3_saygi: "Respects it without argument or punishment",
 
         q4_title: "Their Zodiac Sign?",
         zodiac_placeholder: "Select...",
@@ -1968,25 +2234,25 @@
         zodiac_kova: "Aquarius (Air)",
         zodiac_balik: "Pisces (Water)",
 
-        q5_title: "Who pays on dates?",
-        q5_alman: "Venmo requests instantly (split 50/50)",
-        q5_cimri: "Forgot their wallet. Always.",
-        q5_lafci: "Pays, but holds it against you forever",
-        q5_sov: "Makes a scene with the waiter over the check",
-        q5_sessiz_oder: "Always pays, silently controlling",
+        q5_title: "How do decisions and plans usually get made in your relationship?",
+        q5_diktator: "They decide — if I push back, it drags until their way wins",
+        q5_manipule: "Presents it as my idea but it's always what they wanted",
+        q5_kaos: "Never plans, never takes responsibility — I'm always organizing",
+        q5_gizli_kontrol: "Leaves the choice to me but whatever I pick, something's wrong",
+        q5_birlikte: "We talk it through and genuinely find a middle ground",
 
-        q6_title: "Reaction when a waiter messes up?",
-        q6_ezer: "Quietly belittles them (elitist)",
-        q6_sessiz_sinir: "Gets mad but says nothing",
-        q6_bagirir: "Causes a massive scene (Karen energy)",
-        q6_kibar: "Politely asks to fix it",
-        q6_mukemmel: "Nothing ever goes wrong, perfect facade",
+        q6_title: "When you're sick or emotionally falling apart, how do they respond?",
+        q6_sabir: 'Acts caring at first, then quickly shifts to "are you still not better?"',
+        q6_duyarsiz: "Barely registers it — 'everyone has hard times', moves on",
+        q6_kendisi: "Comforts me but the conversation somehow always ends up about them",
+        q6_ezer2: "Gets impatient or subtly condescending when I show weakness",
+        q6_yaninda: "Genuinely shows up — present, caring, without making it about them",
 
         q_whatsapp_title: "Paste your last 10 messages from WhatsApp/iMessage here.",
         privacy_title: "Privacy Pact:",
         privacy_desc: " Your messages are NEVER saved. Analyzed locally and instantly deleted.",
         cta_button: "See the Truth (Free Scan)",
-        disclaimer: "🔒 No data saved • 100% Anonymous • For entertainment",
+        disclaimer: "🔒 No data saved to any server • 100% Anonymous",
 
         red_flag_label: "TOXICITY PERCENTAGE",
         detected_archetype: "Detected Archetype",
@@ -2002,6 +2268,7 @@
         unlock_subtitle: "🧠 Deep dive psychological analysis",
         unlock_btn: "🔓 Unlock — See Analysis",
 
+        testimonials_label: "WHAT USERS SAID",
         scroll_packages: "View Packages",
         premium_analysis_arrow: "PREMIUM ANALYSES ↓",
 
@@ -2063,7 +2330,7 @@
 
       // Update form options (Option cards)
       document.querySelectorAll('.option-card').forEach(card => {
-        const qLabel = card.querySelector('span.text-sm');
+        const qLabel = card.querySelector('span.opt-text');
         const qValue = card.getAttribute('data-value');
         const qId = card.getAttribute('data-question');
         const dictKey = `${qId}_${qValue}`;
@@ -2121,39 +2388,39 @@
       if (lang === 'en') {
         scoringData = {
           q1: {
-            sessiz: { points: 8, label: 'Passive Aggressive' },
-            ses: { points: 7, label: 'Aggressive' },
-            espri: { points: 3, label: 'Deflective' },
-            mantik: { points: 6, label: 'Manipulative' },
-            sakin: { points: 4, label: 'Control Freak' },
+            itiraz:  { points: 8, label: 'Reality Distorter' },      // Gaslighting
+            saldiri: { points: 9, label: 'Attack-Mode Defender' },   // DARVO
+            buz:     { points: 7, label: 'Emotional Punisher' },     // Stonewalling
+            mantik:  { points: 8, label: 'Mind Manipulator' },       // Intellectual gaslighting
+            dinler:  { points: 1, label: null },
           },
           q2: {
-            araba: { points: 3, label: null },
-            rastgele: { points: 10, label: 'Disloyal' },
-            motivasyon: { points: 7, label: 'Sigma/Crypto Bro' },
-            hayvan: { points: 1, label: null },
-            kultur: { points: 4, label: 'Intellectual Narcissist' },
+            kral:      { points: 9, label: 'Grandiose Narcissist' }, // Narcissism
+            eski:      { points: 8, label: 'Devaluer' },             // Devaluation pattern
+            ikiyuzlu:  { points: 9, label: 'Two-Faced' },            // Machiavellianism
+            umursamaz: { points: 6, label: 'Emotionally Detached' }, // Psychopathic callousness
+            pozitif:   { points: 1, label: null },
           },
           q3: {
-            bebegim: { points: 3, label: null },
-            isim: { points: 5, label: null },
-            askim: { points: 4, label: null },
-            kanka: { points: 9, label: 'Disrespectful' },
-            canim: { points: 4, label: 'Love-Bombing' },
+            kucumseme: { points: 9, label: 'Contemptuous' },         // Sadism / contempt
+            patlama:   { points: 10, label: 'Emotional Trap' },      // Intimidation
+            kurban:    { points: 9, label: 'Victim Player' },        // DARVO
+            buzul:     { points: 7, label: 'Silent Punisher' },      // Passive aggression
+            saygi:     { points: 1, label: null },
           },
           q5: {
-            alman: { points: 2, label: null },
-            cimri: { points: 10, label: 'Stingy' },
-            lafci: { points: 7, label: 'Calculated' },
-            sov: { points: 5, label: 'Show-off' },
-            sessiz_oder: { points: 5, label: 'Financial Controller' },
+            diktator:      { points: 9, label: 'Coercive Controller' },  // Control
+            manipule:      { points: 10, label: 'Covert Manipulator' },  // Machiavellianism
+            kaos:          { points: 5, label: 'Irresponsible' },        // Exploitation
+            gizli_kontrol: { points: 8, label: 'Hidden Controller' },    // Covert control
+            birlikte:      { points: 1, label: null },
           },
           q6: {
-            ezer: { points: 10, label: 'Bully / Karen' },
-            sessiz_sinir: { points: 6, label: null },
-            bagirir: { points: 10, label: 'Uncontrolled Anger' },
-            kibar: { points: 1, label: null },
-            mukemmel: { points: 6, label: 'Fake Perfectionist' },
+            sabir:   { points: 7, label: 'Empathy Faker' },          // Low empathy
+            duyarsiz:{ points: 9, label: 'Callous' },                // Psychopathy
+            kendisi: { points: 7, label: 'Empathy Hijacker' },       // Narcissistic hijack
+            ezer2:   { points: 10, label: 'Cruelty in Weakness' },   // Sadism
+            yaninda: { points: 1, label: null },
           },
         };
 
@@ -2207,45 +2474,45 @@
           hidden: 'Hidden '
         };
 
-        dismissiveWordsList = ['yeah', 'ok', 'idc', 'whatever', 'k', 'cool', 'sure', 'idk'];
+        dismissiveWordsList = ['yeah', 'ok', 'idc', 'whatever', 'k', 'sure', 'idk', 'fine', 'calm down', "you're overreacting", 'too sensitive'];
         traitTexts = { umursamaz: 'Dismissive' };
 
       } else {
         scoringData = {
           q1: {
-            sessiz: { points: 8, label: 'Pasif Agresif' },
-            ses: { points: 7, label: 'Agresif' },
-            espri: { points: 3, label: 'Kaçak' },
-            mantik: { points: 6, label: 'Manipülatif' },
-            sakin: { points: 4, label: 'Aşırı Kontrollü' },
+            itiraz:  { points: 8, label: 'Gerçeği Çarpıtıcı' },     // Gaslighting
+            saldiri: { points: 9, label: 'Saldırgan Savunmacı' },   // DARVO
+            buz:     { points: 7, label: 'Duygusal Cezalandırıcı' },// Stonewalling
+            mantik:  { points: 8, label: 'Zihin Manipülatörü' },    // Entelektüel gaslighting
+            dinler:  { points: 1, label: null },
           },
           q2: {
-            araba: { points: 3, label: null },
-            rastgele: { points: 10, label: 'Sadakatsiz' },
-            motivasyon: { points: 7, label: 'Kriptocu/Sigma' },
-            hayvan: { points: 1, label: null },
-            kultur: { points: 4, label: 'Entelektüel Narsist' },
+            kral:      { points: 9, label: 'Grandiöz Narsist' },    // Narsisizm
+            eski:      { points: 8, label: 'Değersizleştirici' },    // Devaluation
+            ikiyuzlu:  { points: 9, label: 'İki Yüzlü' },           // Makyavelizm
+            umursamaz: { points: 6, label: 'Duygusal Uzak' },       // Psikopati
+            pozitif:   { points: 1, label: null },
           },
           q3: {
-            bebegim: { points: 3, label: null },
-            isim: { points: 5, label: null },
-            askim: { points: 4, label: null },
-            kanka: { points: 9, label: 'Saygısız' },
-            canim: { points: 4, label: 'Love-Bombing' },
+            kucumseme: { points: 9, label: 'Tahakkümcü' },          // Sadizm / aşağılama
+            patlama:   { points: 10, label: 'Duygusal Kapan' },     // Yıldırma
+            kurban:    { points: 9, label: 'Kurban Oyuncusu' },     // DARVO
+            buzul:     { points: 7, label: 'Pasif Cezalandırıcı' }, // Pasif agresyon
+            saygi:     { points: 1, label: null },
           },
           q5: {
-            alman: { points: 2, label: null },
-            cimri: { points: 10, label: 'Cimri' },
-            lafci: { points: 7, label: 'Hesapçı' },
-            sov: { points: 5, label: 'Şovmen' },
-            sessiz_oder: { points: 5, label: 'Finansal Kontrol' },
+            diktator:      { points: 9, label: 'Kontrolcü' },           // Zorlayıcı kontrol
+            manipule:      { points: 10, label: 'Örtülü Manipülatör' }, // Makyavelizm
+            kaos:          { points: 5, label: 'Sorumsuz' },            // Sömürü
+            gizli_kontrol: { points: 8, label: 'Gizli Kontrolcü' },    // Örtülü kontrol
+            birlikte:      { points: 1, label: null },
           },
           q6: {
-            ezer: { points: 10, label: 'Zorba' },
-            sessiz_sinir: { points: 6, label: null },
-            bagirir: { points: 10, label: 'Kontrolsüz' },
-            kibar: { points: 1, label: null },
-            mukemmel: { points: 6, label: 'Sahte Mükemmelci' },
+            sabir:   { points: 7, label: 'Empati Taklitçisi' },     // Düşük empati
+            duyarsiz:{ points: 9, label: 'Duygusal Köreltici' },    // Psikopati
+            kendisi: { points: 7, label: 'Empatiyi Çalan' },        // Narsistik çalma
+            ezer2:   { points: 10, label: 'Acımayan' },             // Sadizm
+            yaninda: { points: 1, label: null },
           },
         };
 
@@ -2299,7 +2566,7 @@
           hidden: 'Gizli '
         };
 
-        dismissiveWordsList = ['aynen', 'tm', 'ok', 'bilmiyorum', 'sen bilirsin'];
+        dismissiveWordsList = ['aynen', 'tm', 'ok', 'bilmiyorum', 'sen bilirsin', 'neyse', 'fark etmez', 'geçelim', 'abartıyorsun', 'çok hassassın'];
         traitTexts = { umursamaz: 'Umursamaz' };
       }
     }
@@ -2396,6 +2663,177 @@
     }
 
     // ========================================
+    // ========================================
+    // === TESTIMONIALS + RECOMMENDATION ===
+    // ========================================
+
+    const testimonialData = {
+      tr: [
+        { score: [0,35],  text: "Skoru görünce neden hâlâ gitmiyor olduğumu anladım. İçimde zaten biliyordum ama görmek farklı.", meta: "Ayşe G.", badge: "Düşük Risk" },
+        { score: [0,35],  text: "En çarpıcı nokta, 'normal' zannettiğim şeylerin aslında ne olduğunu fark ettirmesiydi.", meta: "Merve K.", badge: "Düşük Risk" },
+        { score: [36,65], text: "Partnerimdeki kalıpları isimlendiremiyordum. Bu test tam olarak söyledi. Rahatsız edici ama gerekli.", meta: "Selin Y.", badge: "Orta Risk" },
+        { score: [36,65], text: "Tam raporla birleştirince her şey yerine oturdu. Herkese tavsiye ederim.", meta: "Berk T.", badge: "Orta Risk" },
+        { score: [66,80], text: "Arkadaşım aylardır 'abartıyorsun' diyordu. %74 gördüğümde ekran görüntüsü attım.", meta: "Ceren A.", badge: "Yüksek Risk" },
+        { score: [66,80], text: "Gaslighting bölümü tam oturumda analisti gibi konuştu. Hâlâ tüylerim diken diken.", meta: "Emre D.", badge: "Yüksek Risk" },
+        { score: [81,100],text: "Bu skoru görünce ağladım. Ama en sağlıklı ağlamam oldu. Sayfalarca okumak yerine 3 dakika yetti.", meta: "Deniz B.", badge: "Kritik" },
+        { score: [81,100],text: "Tam raporu aldım ve terapistimle paylaştım. 'Bunu mükemmel özetlemiş' dedi.", meta: "Zeynep Ö.", badge: "Kritik" },
+      ],
+      en: [
+        { score: [0,35],  text: "Seeing the score made me understand why I was still staying. I already knew inside, but seeing it was different.", meta: "Sarah M.", badge: "Low Risk" },
+        { score: [0,35],  text: "The most striking part was realizing that the things I thought were 'normal' weren't at all.", meta: "Emma R.", badge: "Low Risk" },
+        { score: [36,65], text: "I couldn't name the patterns in my partner. This test said it clearly. Uncomfortable but necessary.", meta: "Julia K.", badge: "Medium Risk" },
+        { score: [36,65], text: "Combined with the full report, everything clicked. Highly recommend.", meta: "Alex T.", badge: "Medium Risk" },
+        { score: [66,80], text: "My friend kept saying 'you're overreacting.' When I saw 74%, I took a screenshot.", meta: "Mia C.", badge: "High Risk" },
+        { score: [66,80], text: "The gaslighting section spoke like a therapist in session. Still gives me chills.", meta: "Ryan D.", badge: "High Risk" },
+        { score: [81,100],text: "I cried when I saw this score. But it was the healthiest cry I've had. 3 minutes and it said everything.", meta: "Lily B.", badge: "Critical" },
+        { score: [81,100],text: "I got the full report and shared it with my therapist. She said 'this nailed it perfectly.'", meta: "Jessica W.", badge: "Critical" },
+      ]
+    };
+
+    function renderTestimonials(score, lang) {
+      const container = document.getElementById('testimonials-scroll');
+      if (!container) return;
+      const pool = testimonialData[lang] || testimonialData.tr;
+      // Pick 2 score-matched cards + 1 wildcard from adjacent range
+      const matched = pool.filter(t => score >= t.score[0] && score <= t.score[1]);
+      const others  = pool.filter(t => !(score >= t.score[0] && score <= t.score[1]));
+      const picks   = [...matched, ...others].slice(0, 3);
+      container.innerHTML = picks.map(t => `
+        <div class="testimonial-card">
+          <div class="tc-stars">★★★★★</div>
+          <div class="tc-text">"${t.text}"</div>
+          <div class="tc-meta">${t.meta} &nbsp;<span class="tc-badge">${t.badge}</span></div>
+        </div>
+      `).join('');
+    }
+
+    function recommendPackage(score, labels, lang) {
+      const banner = document.getElementById('rec-banner');
+      const titleEl = document.getElementById('rec-banner-title');
+      const bodyEl  = document.getElementById('rec-banner-body');
+      const pkgLbl  = document.getElementById('rec-banner-pkg-label');
+      if (!banner) return;
+
+      let pkgId, title, body, pkgName;
+      if (lang === 'tr') {
+        if (score >= 75) {
+          pkgId = 4; pkgName = '🔥 Komple Paket';
+          title = 'Skor seviyene göre önerilen: Komple Paket';
+          body  = `%${score} skor ve tespit edilen ${labels.length} örüntü, bu durumun birden fazla katmana yayıldığını gösteriyor. Tek paketle parça parça bakmak yerine tüm boyutları bir arada gör.`;
+        } else if (score >= 55 || labels.some(l => l.includes('Manipül') || l.includes('Narsist') || l.includes('Çarpıt'))) {
+          pkgId = 2; pkgName = '🧠 Derin Psikoloji';
+          title = 'Profiline en uygun paket: Derin Psikoloji';
+          body  = `Analizde öne çıkan örüntüler (${labels.slice(0,2).join(', ') || 'psikolojik manipülasyon'}), bilinçaltı savunma mekanizmalarıyla doğrudan bağlantılı. Bu pakette tam derinliğiyle inceleniyor.`;
+        } else if (labels.some(l => l.includes('Eski') || l.includes('İki Yüz') || l.includes('Grandiöz'))) {
+          pkgId = 1; pkgName = '🔍 Eski Sevgili Radarı';
+          title = 'Sana özel başlangıç noktası: Eski Sevgili Radarı';
+          body  = `Tespit edilen profil, geçmişle bağın hâlâ devam ettiğine işaret ediyor. Bu paket, dijital izlerden gerçek niyeti okumaya yardımcı olur.`;
+        } else {
+          pkgId = 3; pkgName = '🔮 Gelecek Senaryoları';
+          title = 'Bu dinamiğin nereye gittiğini merak ediyor musun?';
+          body  = `Mevcut örüntü devam ederse ne olur? Bu paket, ilişkinin 3 olası senaryosunu ve her birinde senin için en sağlıklı adımı ortaya koyuyor.`;
+        }
+      } else {
+        if (score >= 75) {
+          pkgId = 4; pkgName = '🔥 Complete Bundle';
+          title = 'Recommended for your score: Complete Bundle';
+          body  = `A ${score}% score with ${labels.length} detected patterns shows this situation spans multiple layers. See every dimension in one report instead of piece by piece.`;
+        } else if (score >= 55 || labels.some(l => l.includes('Manipul') || l.includes('Narciss') || l.includes('Distort'))) {
+          pkgId = 2; pkgName = '🧠 Deep Psychology';
+          title = 'Best match for your profile: Deep Psychology';
+          body  = `The patterns in your analysis (${labels.slice(0,2).join(', ') || 'psychological manipulation'}) are directly linked to subconscious defense mechanisms — examined in full depth in this package.`;
+        } else if (labels.some(l => l.includes('Devalue') || l.includes('Two-Face') || l.includes('Grandiose'))) {
+          pkgId = 1; pkgName = '🔍 Ex-Partner Radar';
+          title = 'Your starting point: Ex-Partner Radar';
+          body  = `The detected profile suggests the past connection may still be active. This package helps read real intent from digital traces.`;
+        } else {
+          pkgId = 3; pkgName = '🔮 Future Scenarios';
+          title = 'Wondering where this dynamic leads?';
+          body  = `What happens if this pattern continues? This package reveals 3 possible scenarios and the healthiest next step for you in each.`;
+        }
+      }
+
+      titleEl.textContent = title;
+      bodyEl.textContent  = body;
+      pkgLbl.textContent  = pkgName;
+      banner.classList.add('visible');
+
+      // Update sticky CTA bar
+      recommendedPkgId = pkgId;
+      const stickyLbl = document.getElementById('sticky-cta-label');
+      const stickyPkg = document.getElementById('sticky-cta-pkg');
+      const stickyBtnTxt = document.getElementById('sticky-cta-btn-text');
+      if (stickyLbl) stickyLbl.textContent = lang === 'tr' ? 'Sana özel öneri' : 'Recommended for you';
+      if (stickyPkg) stickyPkg.textContent = pkgName;
+      if (stickyBtnTxt) stickyBtnTxt.textContent = lang === 'tr' ? 'Raporu Gör →' : 'See Report →';
+
+      // Visually highlight recommended package card
+      [1,2,3,4].forEach(id => {
+        const btn = document.getElementById('pkg-btn-' + id);
+        const wrap = document.getElementById('pkg-btn-' + id + '-wrap');
+        const target = wrap || btn;
+        if (!target) return;
+        target.classList.remove('pkg-recommended');
+        const old = target.querySelector('.pkg-recommended-badge');
+        if (old) old.remove();
+        if (id === pkgId) {
+          target.style.position = 'relative';
+          target.classList.add('pkg-recommended');
+          const badge = document.createElement('div');
+          badge.className = 'pkg-recommended-badge';
+          badge.textContent = lang === 'tr' ? 'SENİN İÇİN' : 'FOR YOU';
+          target.insertBefore(badge, target.firstChild);
+        }
+      });
+    }
+
+    // ========================================
+    // === STICKY CTA BAR LOGIC ===
+    // ========================================
+    let recommendedPkgId = 2; // default, overridden by recommendPackage()
+
+    function stickyCtaClick() {
+      const bar = document.getElementById('sticky-cta-bar');
+      if (bar) {
+        bar.classList.remove('visible');
+        setTimeout(() => bar.classList.add('hidden'), 400);
+      }
+      confirmAndPay(recommendedPkgId);
+    }
+
+    function setupStickyCtaObserver() {
+      const bar = document.getElementById('sticky-cta-bar');
+      const paywall = document.getElementById('paywall-packages-wrapper');
+      if (!bar || !paywall) return;
+
+      // Show bar after 2.5s if user hasn't already scrolled to paywall
+      let barShown = false;
+      const showTimer = setTimeout(() => {
+        bar.classList.remove('hidden');
+        // rAF to ensure display:block applies before transition
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            bar.classList.add('visible');
+            barShown = true;
+          });
+        });
+      }, 2500);
+
+      // Hide bar when paywall enters viewport (user scrolled there themselves)
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            clearTimeout(showTimer);
+            bar.classList.remove('visible');
+            setTimeout(() => bar.classList.add('hidden'), 400);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      observer.observe(paywall);
+    }
+
     // === RENDER RESULTS ===
     // ========================================
     function showResults(results) {
@@ -2433,6 +2871,34 @@
           tagsContainer.appendChild(tag);
         }
 
+        // Dynamically update blurred preview text with real results
+        const topTrait = results.labels.length > 0 ? results.labels[0] : (currentLang === 'tr' ? 'duygusal kaçınma' : 'emotional avoidance');
+        const secondTrait = results.labels.length > 1 ? results.labels[1] : (currentLang === 'tr' ? 'pasif-agresif örüntü' : 'passive-aggressive pattern');
+        const zodiacShort = results.zodiacName ? results.zodiacName.replace(/[♈♉♊♋♌♍♎♏♐♑♒♓]\s*/, '') : '';
+        const hasMessages = formAnswers && formAnswers.messageText && formAnswers.messageText.length > 20;
+
+        if (currentLang === 'tr') {
+          const msgHook = hasMessages
+            ? `Mesajlarındaki dil analizi kritik bir işaret ortaya koydu: cevap süreleri ve kelime seçimi, duygusal mesafeyi normalleştirme davranışına işaret ediyor.`
+            : `Bu profil tipi genellikle sözel iletişimde de kendini ele veriyor — kısa ve belirsiz cevaplar, duygusal mesafeyi normalleştirme çabası.`;
+          document.querySelector('[data-i18n="blur_txt_1"]').innerHTML =
+            `%${results.percentage} skor bize şunu söylüyor: bu kişinin temel örüntüsü <strong>${topTrait}</strong>. ${msgHook}`;
+          document.querySelector('[data-i18n="blur_txt_2"]').innerHTML =
+            `${zodiacShort ? zodiacShort + ' enerjisi bu tabloya ' + results.zodiacFlavor.split('—')[1]?.trim() + ' boyutunu ekliyor. ' : ''}Arketip analizi "${results.archetype}" profilinde ${secondTrait} mekanizmasının nasıl çalıştığını net biçimde ortaya koyuyor.`;
+          document.querySelector('[data-i18n="blur_txt_3"]').innerHTML =
+            `Tespit edilen gizli örüntüler: <strong>${results.labels.slice(0, 3).join(', ') || topTrait}</strong>. Senin için özelleştirilmiş çıkış yolu ve bu dinamikten nasıl korunacağın ise...`;
+        } else {
+          const msgHook = hasMessages
+            ? `Your message analysis reveals a key pattern: response timing and word choice points to a systematic emotional distancing behavior.`
+            : `This profile type typically shows up in communication too — short deflective replies, normalizing emotional unavailability.`;
+          document.querySelector('[data-i18n="blur_txt_1"]').innerHTML =
+            `A ${results.percentage}% score tells us this: their core pattern is <strong>${topTrait}</strong>. ${msgHook}`;
+          document.querySelector('[data-i18n="blur_txt_2"]').innerHTML =
+            `${zodiacShort ? zodiacShort + ' energy adds ' + (results.zodiacFlavor.split('—')[1]?.trim() || 'complexity') + ' to this. ' : ''}The archetype analysis for "${results.archetype}" shows exactly how the ${secondTrait} mechanism operates in your specific dynamic.`;
+          document.querySelector('[data-i18n="blur_txt_3"]').innerHTML =
+            `Hidden patterns detected: <strong>${results.labels.slice(0, 3).join(', ') || topTrait}</strong>. Your personalized exit strategy and how to protect yourself from this dynamic is...`;
+        }
+
         // GA4: Test Bitişi
         if (typeof gtag === 'function') {
           gtag('event', 'test_complete');
@@ -2446,6 +2912,11 @@
         setTimeout(() => {
           animateGauge(results.percentage);
         }, 600);
+
+        // Render testimonials + recommendation banner + sticky CTA
+        renderTestimonials(results.percentage, currentLang);
+        recommendPackage(results.percentage, results.labels, currentLang);
+        setupStickyCtaObserver();
 
         // Auto-trigger pending premium package (from Shopier redirect via sessionStorage)
         const pendingPkg = sessionStorage.getItem('pendingPremiumPkg');
@@ -2713,6 +3184,21 @@
 
     const packagePrices = { 1: '19.90 ₺', 2: '49.90 ₺', 3: '89.90 ₺', 4: '119.90 ₺' };
 
+    const packageBullets = {
+      tr: {
+        1: ['Eski sevgilinin dijital izlerini hâlâ takip ediyor mu?', 'Geçmiş ilişkisinden gerçekten koptu mu, yoksa "yedek" mi tutuyor?', 'Sosyal medya davranışı bağlanma örüntüsünü nasıl ele veriyor?'],
+        2: ['Bilinçaltındaki travma tetikleyicileri ve savunma mekanizmaları', 'Manipülasyon haritası: hangi durumda nasıl tepki verir?', 'Sana özel kırılganlık noktaları ve nasıl korunacağın', 'Freudyen bağlanma stili analizi'],
+        3: ['Bu ilişkinin olası bitiş senaryoları (3 farklı yol)', 'Kim başlatacak, kim incitilecek — ve neden?', 'Kritik dönüm noktaları: ne zaman alarm vermeli?'],
+        4: ['Paket 1 + 2 + 3\'ün tamamı tek raporda', '12 sayfalık kapsamlı psikolojik profil', 'İlişki için hayatta kalma rehberi'],
+      },
+      en: {
+        1: ['Are they still digitally tracking their ex?', 'Did they truly move on, or keeping a "backup"?', 'How their social media behavior reveals attachment patterns'],
+        2: ['Subconscious trauma triggers and defense mechanisms', 'Manipulation map: how they react under pressure', 'Your specific vulnerability points and how to protect yourself', 'Freudian attachment style deep-dive'],
+        3: ['Likely breakup scenarios for this relationship (3 paths)', 'Who initiates, who gets hurt — and why', 'Critical warning signs: when to pull the alarm'],
+        4: ['Everything in Package 1 + 2 + 3 combined', '12-page comprehensive psychological profile', 'Relationship survival guide'],
+      }
+    };
+
     // ========================================
     // === PREMIUM: Loading messages ===
     // ========================================
@@ -2731,6 +3217,43 @@
     // === SHOPIER: Open Payment in New Tab ===
     // ========================================
     let selectedPackageId = null;
+
+    function confirmAndPay(packageId) {
+      // Remove any existing confirmation modal
+      const existing = document.getElementById('pkg-confirm-modal');
+      if (existing) existing.remove();
+
+      const lang = currentLang;
+      const bullets = (packageBullets[lang] || packageBullets['tr'])[packageId] || [];
+      const title = packageNames[packageId] || '';
+      const price = packagePrices[packageId] || '';
+      const btnLabel = lang === 'en' ? `Unlock for ${price} →` : `${price} için Kilidi Aç →`;
+      const whatYouGet = lang === 'en' ? 'What you\'ll receive:' : 'Ne alacaksın:';
+
+      const modal = document.createElement('div');
+      modal.id = 'pkg-confirm-modal';
+      modal.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);padding:0 0 0 0;';
+      modal.innerHTML = `
+        <div style="background:linear-gradient(180deg,#12121A 0%,#0A0A0F 100%);border:1px solid #FF003330;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:28px 24px 40px;box-shadow:0 -20px 80px #FF003320;">
+          <div style="width:40px;height:4px;background:#FF003333;border-radius:4px;margin:0 auto 20px;"></div>
+          <p style="font-size:11px;font-family:monospace;color:#FF0033;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">RAPOR İÇERİĞİ</p>
+          <h3 style="font-size:18px;font-weight:900;color:#fff;margin-bottom:16px;">${title}</h3>
+          <p style="font-size:12px;color:#888;margin-bottom:10px;font-family:monospace;">${whatYouGet}</p>
+          <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;">
+            ${bullets.map(b => `<li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#e0e0e0;"><span style="color:#FF0033;flex-shrink:0;margin-top:1px;">✓</span>${b}</li>`).join('')}
+          </ul>
+          <button onclick="openShopierPayment(${packageId});document.getElementById('pkg-confirm-modal').remove();"
+            style="width:100%;padding:18px;background:linear-gradient(135deg,#FF0044,#FF0066);border:none;border-radius:16px;color:#fff;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 0 40px #FF003344;">
+            ${btnLabel}
+          </button>
+          <button onclick="document.getElementById('pkg-confirm-modal').remove();"
+            style="width:100%;margin-top:12px;padding:12px;background:transparent;border:none;color:#666;font-size:13px;font-family:monospace;cursor:pointer;">
+            ${lang === 'en' ? 'Cancel' : 'Vazgeç'}
+          </button>
+        </div>`;
+      modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+      document.body.appendChild(modal);
+    }
 
     function openShopierPayment(packageId) {
       selectedPackageId = packageId;
